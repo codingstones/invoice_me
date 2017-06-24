@@ -2,8 +2,8 @@ describe "Find A Prodiver" do
   it "find an existing provider" do
     finder = Cuentica::FindAProvider.new()
 
-    dani = finder.run("73208234Q")
+    pepito_perez = finder.run("12345678Z")
 
-    expect(dani["cif"]).to eq "73208234Q"
+    expect(pepito_perez["cif"]).to eq "12345678Z"
   end
 end
