@@ -1,6 +1,17 @@
 require 'cuentica'
 require 'date'
 require 'vcr'
+require 'rack/test'
+
+require_relative '../app'
+
+module SinatraMixin
+  include Rack::Test::Methods
+
+  def app
+    Sinatra::Application
+  end
+end
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -11,6 +22,8 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
   config.shared_context_metadata_behavior = :apply_to_host_groups
+
+  config.include SinatraMixin
 end
 
 VCR.configure do |config|
