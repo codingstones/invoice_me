@@ -1,5 +1,6 @@
 require 'cuentica'
 require 'date'
+require 'vcr'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -10,4 +11,9 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
   config.shared_context_metadata_behavior = :apply_to_host_groups
+end
+
+VCR.configure do |config|
+  config.cassette_library_dir = "fixtures/vcr_cassettes"
+  config.hook_into :webmock
 end

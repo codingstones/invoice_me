@@ -8,12 +8,14 @@ describe "Add An Invoice" do
   let(:a_invoice_number) {"17/2017"}
 
   it "without attachment" do
-    add_invoice = Cuentica::AddInvoice.new
+    VCR.use_cassette("add_invoice") do
+      add_invoice = Cuentica::AddInvoice.new
 
-    invoice = add_invoice.run(cif: provider_cif, date: a_day,
-        expense_lines: some_expense_lines, document_number: a_invoice_number)
+      invoice = add_invoice.run(cif: provider_cif, date: a_day,
+          expense_lines: some_expense_lines, document_number: a_invoice_number)
 
-    expect(invoice).not_to be_nil
-    expect(invoice["id"]).not_to be_nil
+      expect(invoice).not_to be_nil
+      expect(invoice["id"]).not_to be_nil
+    end
   end
 end
