@@ -1,7 +1,11 @@
 module Cuentica
   class FindAProvider
+    def initialize(client = HttpClient.new)
+      @client = client
+    end
+
     def run(cif)
-      providers = Client::get("https://api.cuentica.com/provider")
+      providers = @client.get("https://api.cuentica.com/provider")
       provider = providers.find do |provider|
         provider["cif"] == cif
       end
@@ -10,6 +14,10 @@ module Cuentica
   end
 
   class AddInvoice
+    def initialize(client = HttpClient.new)
+      @client = client
+    end
+
     def run(params)
       cif = params.delete(:cif)
       params[:provider] = provider_id(cif)
@@ -19,7 +27,7 @@ module Cuentica
 
       amount_to_pay = calculate_total_amount(params[:expense_lines])
       params[:payments] = payment_information(params[:date], amount_to_pay)
-      invoice = Client::post("https://api.cuentica.com/expense", params)
+      invoice = @client.post("https://api.cuentica.com/expense", params)
     end
 
     private
@@ -49,13 +57,14 @@ module Cuentica
     end
   end
 
-  class Client
+  class HttpClient
     require 'uri'
     require 'net/http'
     require 'openssl'
     require 'json'
 
-    def self.get(endpoint)
+
+    def get(endpoint)
       url = URI(endpoint)
 
       http = Net::HTTP.new(url.host, url.port)
@@ -69,7 +78,7 @@ module Cuentica
       JSON::parse(response.read_body)
     end
 
-    def self.post(endpoint, params)
+    def post(endpoint, params)
       url = URI(endpoint)
 
       http = Net::HTTP.new(url.host, url.port)
