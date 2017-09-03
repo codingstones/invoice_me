@@ -1,11 +1,11 @@
 module Cuentica
   class FindAProvider
-    def initialize(client = HttpClient.new)
-      @client = client
+    def initialize(cuentica = CuenticaClient.new)
+      @cuentica = cuentica
     end
 
     def run(cif)
-      providers = @client.get("https://api.cuentica.com/provider")
+      providers = @cuentica.get_providers
       provider = providers.find do |provider|
         provider["cif"] == cif
       end
@@ -14,8 +14,8 @@ module Cuentica
   end
 
   class AddInvoice
-    def initialize(client = HttpClient.new)
-      @client = client
+    def initialize(cuentica = CuenticaClient.new)
+      @cuentica = cuentica
     end
 
     def run(args)
@@ -28,7 +28,7 @@ module Cuentica
       amount_to_pay = calculate_total_amount(args[:expense_lines])
       args[:expense_lines] = add_required_info_to_expense_lines(args[:expense_lines])
       args[:payments] = payment_information(args[:date], amount_to_pay)
-      invoice = @client.post("https://api.cuentica.com/expense", args)
+      invoice = @cuentica.register_expense(args)
     end
 
     private
@@ -65,6 +65,20 @@ module Cuentica
     def provider_id(cif)
       provider = FindAProvider.new().run(cif)
       provider["id"]
+    end
+  end
+
+  class CuenticaClient
+    def initialize(client = HttpClient.new)
+      @client = client
+    end
+
+    def register_expense(args)
+      @client.post("https://api.cuentica.com/expense", args)
+    end
+
+    def get_providers
+      @client.get("https://api.cuentica.com/provider")
     end
   end
 
