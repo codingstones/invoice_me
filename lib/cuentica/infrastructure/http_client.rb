@@ -5,6 +5,9 @@ module Cuentica
     require 'openssl'
     require 'json'
 
+    def initialize(auth_token)
+      @auth_token = auth_token
+    end
 
     def get(endpoint)
       url = URI(endpoint)
@@ -28,7 +31,7 @@ module Cuentica
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
       request = Net::HTTP::Post.new(url, 'Content-Type' => 'application/json')
-      request['X-AUTH-TOKEN'] = ENV['AUTH_TOKEN']
+      request['X-AUTH-TOKEN'] = @auth_token
 
       request.body = JSON.generate(params)
 

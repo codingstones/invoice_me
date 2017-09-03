@@ -1,6 +1,6 @@
 module Cuentica
   class CuenticaClient
-    def initialize(client = HttpClient.new)
+    def initialize(client = HttpClient.new(ENV['AUTH_TOKEN']))
       @client = client
     end
 
