@@ -26,6 +26,7 @@ module Cuentica
       params[:draft] = false
 
       amount_to_pay = calculate_total_amount(params[:expense_lines])
+      params[:expense_lines] = add_required_info_to_expense_lines(params[:expense_lines])
       params[:payments] = payment_information(params[:date], amount_to_pay)
       invoice = @client.post("https://api.cuentica.com/expense", params)
     end
@@ -45,6 +46,15 @@ module Cuentica
         total_amount += amount
       end
       total_amount
+    end
+
+    def add_required_info_to_expense_lines(expense_lines)
+      expense_lines.each do |expense_line|
+        expense_line[:expense_type] = "600"
+        expense_line[:investment] = false
+        expense_line[:imputation] = 100
+      end
+      expense_lines
     end
 
     def payment_information(date, total_amount)

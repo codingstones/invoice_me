@@ -1,9 +1,26 @@
-describe 'HTTP' do
-  context 'GET /' do
-    it 'says hello' do
-      get '/'
+describe 'Add Invoice' do
+  it 'the form is shown' do
+    get '/'
 
-      expect(last_response).to be_ok
+    expect(last_response).to be_ok
+  end
+
+  context 'When add an invoice' do
+    let(:a_day) {Date.today}
+    let(:descriptions) { ['a expense'] }
+    let(:bases) { [1000] }
+    let(:vats) { [21] }
+    let(:retentions){ [15] }
+    let(:a_invoice_number) { "17/2017" }
+    let(:the_params) do
+      {invoice_number: a_invoice_number, date: a_day, description: descriptions,
+       base: bases, vat: vats, retention: retentions}
+    end
+    it 'redirects' do
+      VCR.use_cassette("add_invoice") do
+        post '/', the_params
+        expect(last_response).to be_redirect
+      end
     end
   end
 end

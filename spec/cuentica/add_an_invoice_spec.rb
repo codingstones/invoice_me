@@ -3,7 +3,7 @@ describe "Add An Invoice" do
   let(:a_day) {Date.today}
   let(:an_amount) {1000}
   let(:some_expense_lines) do
-    [{description: 'a expense', base: an_amount, vat: 21, retention: 15, expense_type: "600", investment: false, imputation:100}]
+    [{description: 'a expense', base: an_amount, vat: 21, retention: 15}]
   end
   let(:a_invoice_number) {"17/2017"}
 

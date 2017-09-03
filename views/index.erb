@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Registra tus facturas</title>
+  </head>
+  <body>
+    <h1>Registra tus facturas</h1>
+    <form method="POST">
+      <label>Número de factura<input type="text" name="document_number"/></label>
+      <br>
+      <label>Fechs<input type="date" name="date"/></label>
+      <br>
+      Líneas de factura
+      <label>Descripción<input type="text" name="description[]"></label>
+      <label>Base<input type="number" name="base[]"></label>
+      <label>IVA<input type="text" name="vat[]"></label>
+      <label>Retención<input type="text" name="retention[]"></label>
+      <br>
+      <input type="submit" value="Registrar factura">
+    </form>
+  </body>
+<html>
