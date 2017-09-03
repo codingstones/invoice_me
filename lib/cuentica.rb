@@ -18,17 +18,17 @@ module Cuentica
       @client = client
     end
 
-    def run(params)
-      cif = params.delete(:cif)
-      params[:provider] = provider_id(cif)
-      params[:date] = params[:date].to_s
-      params[:document_type] = 'invoice'
-      params[:draft] = false
+    def run(args)
+      cif = args.delete(:cif)
+      args[:provider] = provider_id(cif)
+      args[:date] = args[:date].to_s
+      args[:document_type] = 'invoice'
+      args[:draft] = false
 
-      amount_to_pay = calculate_total_amount(params[:expense_lines])
-      params[:expense_lines] = add_required_info_to_expense_lines(params[:expense_lines])
-      params[:payments] = payment_information(params[:date], amount_to_pay)
-      invoice = @client.post("https://api.cuentica.com/expense", params)
+      amount_to_pay = calculate_total_amount(args[:expense_lines])
+      args[:expense_lines] = add_required_info_to_expense_lines(args[:expense_lines])
+      args[:payments] = payment_information(args[:date], amount_to_pay)
+      invoice = @client.post("https://api.cuentica.com/expense", args)
     end
 
     private
@@ -48,9 +48,10 @@ module Cuentica
       total_amount
     end
 
+    PROFESSIONAL_SERVICS_EXPENSE_TYPE = "623"
     def add_required_info_to_expense_lines(expense_lines)
       expense_lines.each do |expense_line|
-        expense_line[:expense_type] = "600"
+        expense_line[:expense_type] = PROFESSIONAL_SERVICS_EXPENSE_TYPE
         expense_line[:investment] = false
         expense_line[:imputation] = 100
       end
