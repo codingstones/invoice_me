@@ -20,8 +20,6 @@ module Cuentica
     end
 
     def run(args)
-      cif = args.delete(:cif)
-      args[:provider] = provider_id(cif)
       args[:date] = args[:date].to_s
       args[:document_type] = 'invoice'
       args[:draft] = false
@@ -31,6 +29,10 @@ module Cuentica
       args[:payments] = payment_information(args[:date], amount_to_pay)
 
       @invoice_validator.validate(args)
+
+      cif = args.delete(:cif)
+      args[:provider] = provider_id(cif)
+
       invoice = @cuentica.register_expense(args)
     end
 

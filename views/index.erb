@@ -32,6 +32,15 @@
   </script>
   <body>
     <h1>Registra tus facturas</h1>
+
+    <%if errors%>
+      <ul>
+        <%errors.each do |error|%>
+        <li><%=error[0]%>: <%=error[1].join(',')%></li>
+        <%end%>
+      </ul>
+    <%end%>
+
     <form method="POST">
       <label>Número de factura<input type="text" name="document_number"/></label>
       <br>
