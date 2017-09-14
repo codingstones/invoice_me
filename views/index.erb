@@ -2,6 +2,34 @@
   <head>
     <title>Registra tus facturas</title>
   </head>
+  <script>
+  const LINE_TEMPLATE = `
+  <li>
+    <label>Descripción<input type="text" name="description[]"></label>
+    <label>Base<input type="number" name="base[]"></label>
+    <label>IVA<input type="text" name="vat[]"></label>
+    <label>Retención<input type="text" name="retention[]"></label>
+    <a href="">Eliminar</a>
+  </li>`;
+
+  function addNewLine(){
+    const lines = document.querySelector('#lines');
+    const newLine = document.createRange().createContextualFragment(LINE_TEMPLATE);
+    newLine.querySelector('a').addEventListener('click', (event) => {
+      event.preventDefault();
+      lines.removeChild(newLine);
+    });
+    lines.appendChild(newLine);
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const adder = document.querySelector('#adder');
+    adder.addEventListener('click', (event) => {
+      event.preventDefault();
+      addNewLine();
+    });
+  });
+  </script>
   <body>
     <h1>Registra tus facturas</h1>
     <form method="POST">
@@ -9,12 +37,18 @@
       <br>
       <label>Fechs<input type="date" name="date"/></label>
       <br>
-      Líneas de factura
-      <label>Descripción<input type="text" name="description[]"></label>
-      <label>Base<input type="number" name="base[]"></label>
-      <label>IVA<input type="text" name="vat[]"></label>
-      <label>Retención<input type="text" name="retention[]"></label>
-      <br>
+      <h2>Líneas de factura</h2>
+      <ul id="lines">
+        <li>
+          <label>Descripción<input type="text" name="description[]"></label>
+          <label>Base<input type="number" name="base[]"></label>
+          <label>IVA<input type="text" name="vat[]"></label>
+          <label>Retención<input type="text" name="retention[]"></label>
+        </li>
+      </ul>
+      <br><br>
+      <a href="" id="adder">Añadir nueva línea</a>
+      <br><br><br>
       <input type="submit" value="Registrar factura">
     </form>
   </body>
