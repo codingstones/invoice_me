@@ -22,5 +22,16 @@ describe 'Add Invoice' do
         expect(last_response).to be_redirect
       end
     end
+
+    context 'invalid' do
+      let(:invalid_params) {{foo: 'bar'}}
+      it 'show errors' do
+        VCR.use_cassette("add_invoice") do
+          post '/', invalid_params
+          expect(last_response.status).to eq 422
+        end
+      end
+    end
   end
+
 end
