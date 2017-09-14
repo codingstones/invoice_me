@@ -13,7 +13,7 @@ describe 'Add Invoice' do
     let(:retentions){ [15] }
     let(:a_invoice_number) { "17/2017" }
     let(:the_params) do
-      {invoice_number: a_invoice_number, date: a_day, description: descriptions,
+      {document_number: a_invoice_number, date: a_day, description: descriptions,
        base: bases, vat: vats, retention: retentions}
     end
     it 'redirects' do
