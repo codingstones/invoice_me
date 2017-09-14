@@ -14,8 +14,9 @@ module Cuentica
   end
 
   class AddInvoice
-    def initialize(cuentica = CuenticaClient.new)
+    def initialize(cuentica = CuenticaClient.new, invoice_validator = InvoiceValidator.new)
       @cuentica = cuentica
+      @invoice_validator = invoice_validator
     end
 
     def run(args)
@@ -28,10 +29,13 @@ module Cuentica
       amount_to_pay = calculate_total_amount(args[:expense_lines])
       args[:expense_lines] = add_required_info_to_expense_lines(args[:expense_lines])
       args[:payments] = payment_information(args[:date], amount_to_pay)
+
+      @invoice_validator.validate(args)
       invoice = @cuentica.register_expense(args)
     end
 
     private
+
     def calculate_total_amount(expense_lines)
       total_amount = 0
       expense_lines.each do |expense|
@@ -65,6 +69,19 @@ module Cuentica
     def provider_id(cif)
       provider = FindAProvider.new().run(cif)
       provider["id"]
+    end
+  end
+
+  class InvoiceValidator
+    require 'dry-validation'
+
+    SCHEMA = Dry::Validation.Schema do
+      required(:document_number).filled(:str?)
+    end
+
+    def validate(args)
+      result = SCHEMA.call(args)
+      raise InvalidInvoiceError, result.errors if result.failure?
     end
   end
 end

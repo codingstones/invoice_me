@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem 'sinatra'
+gem 'dry-validation'
 
 group :development do
   gem 'rspec'
