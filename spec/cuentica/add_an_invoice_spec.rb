@@ -11,10 +11,8 @@ describe "Add An Invoice" do
     @add_invoice = Cuentica::AddInvoice.new
   end
 
-  it "without attachment" do
+  it "with valid data" do
     VCR.use_cassette("add_invoice") do
-
-
       invoice = @add_invoice.run(cif: provider_cif, date: a_day,
           expense_lines: some_expense_lines, document_number: a_invoice_number)
 
@@ -23,10 +21,21 @@ describe "Add An Invoice" do
     end
   end
 
-  it "without invoice number" do
-    VCR.use_cassette("add_invoice") do
-    expect{@add_invoice.run(cif: provider_cif, date: a_day,
+  context "fails" do
+    it "without invoice number" do
+      VCR.use_cassette("add_invoice") do
+      expect{@add_invoice.run(cif: provider_cif, date: a_day,
         expense_lines: some_expense_lines)}.to raise_error(Cuentica::InvalidInvoiceError)
+      end
+    end
+
+    it "without date" do
+      VCR.use_cassette("add_invoice") do
+      expect{@add_invoice.run(cif: provider_cif, expense_lines: some_expense_lines,
+        document_number: a_invoice_number)}.to raise_error(Cuentica::InvalidInvoiceError)
+      end
     end
   end
+
+
 end
