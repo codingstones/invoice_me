@@ -4,13 +4,16 @@ require './lib/cuentica'
 add_invoice_action = Cuentica::AddInvoice.new
 autenticate_a_user = Cuentica::AuthenticateAUser.new
 
+enable :sessions
+
 get '/login' do
   erb :login, :locals => {}
 end
 
 post '/login' do
   user = autenticate_a_user.run(params[:user], params[:password])
-  
+
+  session[:current_user] = user
   redirect '/'
 end
 
