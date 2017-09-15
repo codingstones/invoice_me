@@ -6,6 +6,10 @@ autenticate_a_user = Cuentica::AuthenticateAUser.new
 
 enable :sessions
 
+def is_authenticated!
+  redirect '/login' unless session[:current_user]
+end
+
 get '/login' do
   erb :login, :locals => {:errors => nil}
 end
@@ -22,10 +26,14 @@ post '/login' do
 end
 
 get '/' do
+  is_authenticated!
+
   erb :index, :locals => {:errors => nil}
 end
 
 post '/' do
+  is_authenticated!
+  
   params[:cif] = "12345678Z"
   expense_lines = []
   if params[:description]

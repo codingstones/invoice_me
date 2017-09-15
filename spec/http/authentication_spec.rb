@@ -34,4 +34,10 @@ describe 'Authentication' do
       end
     end
   end
+
+  it 'redirects to login if is not authenticated' do
+    get '/'
+    
+    expect(last_response).to be_redirect
+  end
 end
