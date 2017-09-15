@@ -1,30 +1,21 @@
 module Cuentica
-  class FindAProvider
-    def initialize(cuentica = CuenticaClient.new)
-      @cuentica = cuentica
-    end
-
-    def run(cif)
-      providers = @cuentica.get_providers
-      provider = providers.find do |provider|
-        provider["cif"] == cif
-      end
-      return provider
-    end
-  end
-
   class AuthenticateAUser
+    def initialize(provider_service = ProviderService.new(CuenticaClient.new))
+      @provider_service = provider_service
+    end
+
     def run(cif, password)
-      provider = FindAProvider.new().run(cif)
+      provider = @provider_service.find_provider(cif)
 
       provider if password == "password"
     end
   end
 
   class AddInvoice
-    def initialize(cuentica = CuenticaClient.new, invoice_validator = InvoiceValidator.new)
+    def initialize(cuentica = CuenticaClient.new, invoice_validator = InvoiceValidator.new, provider_service = ProviderService.new(CuenticaClient.new))
       @cuentica = cuentica
       @invoice_validator = invoice_validator
+      @provider_service = provider_service
     end
 
     def run(args)
@@ -77,7 +68,7 @@ module Cuentica
     end
 
     def provider_id(cif)
-      provider = FindAProvider.new().run(cif)
+      provider = @provider_service.find_provider(cif)
       provider["id"]
     end
   end
