@@ -13,6 +13,14 @@ module Cuentica
     end
   end
 
+  class AuthenticateAUser
+    def run(cif, password)
+      provider = FindAProvider.new().run(cif)
+
+      provider if password == "password"
+    end
+  end
+
   class AddInvoice
     def initialize(cuentica = CuenticaClient.new, invoice_validator = InvoiceValidator.new)
       @cuentica = cuentica
