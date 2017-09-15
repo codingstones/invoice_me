@@ -4,7 +4,7 @@ require './lib/cuentica'
 add_invoice_action = Cuentica::AddInvoice.new
 
 get '/' do
-  erb :index
+  erb :index, :locals => {:errors => nil}
 end
 
 
