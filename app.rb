@@ -2,11 +2,21 @@ require 'sinatra'
 require './lib/cuentica'
 
 add_invoice_action = Cuentica::AddInvoice.new
+autenticate_a_user = Cuentica::AuthenticateAUser.new
+
+get '/login' do
+  erb :login, :locals => {}
+end
+
+post '/login' do
+  user = autenticate_a_user.run(params[:user], params[:password])
+  
+  redirect '/'
+end
 
 get '/' do
   erb :index, :locals => {:errors => nil}
 end
-
 
 post '/' do
   params[:cif] = "12345678Z"
