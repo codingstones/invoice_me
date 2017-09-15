@@ -7,7 +7,7 @@ autenticate_a_user = Cuentica::AuthenticateAUser.new
 enable :sessions
 
 def is_authenticated!
-  redirect '/login' unless session[:current_user]
+  redirect '/login' unless session[:current_cif]
 end
 
 get '/login' do
@@ -17,7 +17,7 @@ end
 post '/login' do
   user = autenticate_a_user.run(params[:user], params[:password])
   if user
-    session[:current_user] = user
+    session[:current_cif] = user["cif"]
     redirect '/'
   else
     status 422
@@ -33,8 +33,8 @@ end
 
 post '/' do
   is_authenticated!
-  
-  params[:cif] = "12345678Z"
+
+  params[:cif] = session[:current_cif]
   expense_lines = []
   if params[:description]
     params[:description].each_with_index do |description, index|

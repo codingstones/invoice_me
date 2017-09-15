@@ -19,7 +19,7 @@ describe 'Authentication' do
       VCR.use_cassette("find_a_provider") do
         post '/login', credentials
 
-        expect(last_request.env['rack.session'][:current_user]).not_to be_nil
+        expect(last_request.env['rack.session'][:current_cif]).not_to be_nil
       end
     end
   end
@@ -37,7 +37,7 @@ describe 'Authentication' do
 
   it 'redirects to login if is not authenticated' do
     get '/'
-    
+
     expect(last_response).to be_redirect
   end
 end

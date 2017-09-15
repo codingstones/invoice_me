@@ -1,6 +1,6 @@
 describe 'Add Invoice' do
   before(:each) do
-    get '/', {}, { 'rack.session' => { current_user: "12345678Z" } }
+    get '/', {}, { 'rack.session' => { current_cif: "12345678Z" } }
   end
 
   it 'the form is shown' do
