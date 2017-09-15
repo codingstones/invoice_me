@@ -4,6 +4,13 @@
   </head>
   <body>
     <h1>Entra a registrar tus facturas</h1>
+    <%if errors%>
+      <ul>
+        <%errors.each do |error|%>
+        <li><%=error%></li>
+        <%end%>
+      </ul>
+    <%end%>
     <form method="POST">
       <label>Usuario<input type="text" name="user"/></label>
       <br>

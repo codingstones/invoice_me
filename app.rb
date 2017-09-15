@@ -7,14 +7,18 @@ autenticate_a_user = Cuentica::AuthenticateAUser.new
 enable :sessions
 
 get '/login' do
-  erb :login, :locals => {}
+  erb :login, :locals => {:errors => nil}
 end
 
 post '/login' do
   user = autenticate_a_user.run(params[:user], params[:password])
-
-  session[:current_user] = user
-  redirect '/'
+  if user
+    session[:current_user] = user
+    redirect '/'
+  else
+    status 422
+    erb :login, :locals => {:errors => ['Invalid User']}
+  end
 end
 
 get '/' do
