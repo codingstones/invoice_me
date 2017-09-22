@@ -14,15 +14,7 @@ module Cuentica
     def total_amount
       total_amount = 0
       @lines.each do |line|
-        base = line.base
-        vat = line.vat
-        retention = line.retention
-
-        vat_amount = base*vat/100
-        retention_amount = base*retention/100
-
-        amount = base + (vat_amount - retention_amount)
-        total_amount += amount
+        total_amount += line.amount
       end
       total_amount
     end
@@ -36,6 +28,12 @@ module Cuentica
       @base = args[:base]
       @vat = args[:vat]
       @retention = args[:retention]
+    end
+
+    def amount
+      vat_amount = base*vat/100
+      retention_amount = base*retention/100
+      base + (vat_amount - retention_amount)
     end
 
     def to_h
