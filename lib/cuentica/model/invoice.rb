@@ -1,18 +1,20 @@
 module Cuentica
   class Invoice
-    attr_reader :id
+    attr_reader :id, :document_number, :lines, :date
 
     def initialize(args)
-      @id = args["id"]
-      @expense_lines = args[:expense_lines]
+      @id = args[:id]
+      @lines = args[:lines]
+      @date = args[:date]
+      @document_number = args[:document_number]
     end
 
     def total_amount
       total_amount = 0
-      @expense_lines.each do |expense|
-        base = expense[:base]
-        vat = expense[:vat]
-        retention = expense[:retention]
+      @lines.each do |line|
+        base = line[:base]
+        vat = line[:vat]
+        retention = line[:retention]
 
         vat_amount = base*vat/100
         retention_amount = base*retention/100

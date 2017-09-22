@@ -20,29 +20,29 @@ module Cuentica
 
     def run(cif, args)
       @invoice_validator.validate(args)
-
       invoice = Invoice.new(args)
 
-      args[:date] = args[:date].to_s
-      args[:document_type] = 'invoice'
-      args[:draft] = false
+      expense_args = map_invoice_to_expense(cif, invoice)
 
-      amount_to_pay = invoice.total_amount
-      args[:expense_lines] = add_required_info_to_expense_lines(args[:expense_lines])
-      args[:payments] = payment_information(args[:date], amount_to_pay)
-
-      args[:provider] = provider_id(cif)
-
-      raw = @cuentica.register_expense(args)
-      Invoice.new(raw)
+      @cuentica.register_expense(expense_args)
     end
 
     private
 
-    PROFESSIONAL_SERVICS_EXPENSE_TYPE = "623"
+    def map_invoice_to_expense(cif, invoice)
+      args = {document_type: 'invoice', draft: false}
+      args[:document_number] = invoice.document_number
+      args[:date] = invoice.date.to_s
+      args[:expense_lines] = add_required_info_to_expense_lines(invoice.lines)
+      args[:provider] = provider_id(cif)
+      args[:payments] = payment_information(args[:date], invoice.total_amount)
+      args
+    end
+
+    PROFESSIONAL_SERVICES_EXPENSE_TYPE = "623"
     def add_required_info_to_expense_lines(expense_lines)
       expense_lines.each do |expense_line|
-        expense_line[:expense_type] = PROFESSIONAL_SERVICS_EXPENSE_TYPE
+        expense_line[:expense_type] = PROFESSIONAL_SERVICES_EXPENSE_TYPE
         expense_line[:investment] = false
         expense_line[:imputation] = 100
       end

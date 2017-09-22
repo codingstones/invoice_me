@@ -46,18 +46,18 @@ post '/' do
     }
   end
 
-  expense_lines = []
+  lines = []
   if params[:description]
     params[:description].each_with_index do |description, index|
-      expense_line = {}
-      expense_line[:description] = description
-      expense_line[:base] = params[:base][index].to_f
-      expense_line[:vat] = params[:vat][index].to_i
-      expense_line[:retention] = params[:retention][index].to_i
-      expense_lines.push(expense_line)
+      line = {}
+      line[:description] = description
+      line[:base] = params[:base][index].to_f
+      line[:vat] = params[:vat][index].to_i
+      line[:retention] = params[:retention][index].to_i
+      lines.push(line)
     end
   end
-  params[:expense_lines] = expense_lines
+  params[:lines] = lines
 
   begin
     invoice = add_invoice_action.run(cif, params)

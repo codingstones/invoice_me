@@ -13,11 +13,11 @@ describe "Add An Invoice" do
 
   it "with valid data" do
     VCR.use_cassette("add_invoice") do
-      invoice = @add_invoice.run(provider_cif, date: a_day,
-          expense_lines: some_expense_lines, document_number: a_invoice_number)
+      result = @add_invoice.run(provider_cif, date: a_day,
+          lines: some_expense_lines, document_number: a_invoice_number)
 
-      expect(invoice).not_to be_nil
-      expect(invoice.id).not_to be_nil
+      expect(result).not_to be_nil
+      expect(result["id"]).not_to be_nil
     end
   end
 
