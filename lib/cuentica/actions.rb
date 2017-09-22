@@ -68,7 +68,7 @@ module Cuentica
 
     def provider_id(cif)
       provider = @provider_service.find_provider(cif)
-      provider["id"]
+      provider.id
     end
   end
 

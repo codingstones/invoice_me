@@ -17,7 +17,7 @@ end
 post '/login' do
   user = autenticate_a_user.run(params[:user], params[:password])
   if user
-    session[:current_cif] = user["cif"]
+    session[:current_cif] = user.cif
     redirect '/'
   else
     status 422
@@ -35,6 +35,17 @@ post '/' do
   is_authenticated!
 
   cif = session[:current_cif]
+
+  if params[:file]
+    filename = params[:file][:filename]
+    file = params[:file][:tempfile]
+
+    params[:attachment] = {
+      filename: filename,
+      data: file.read
+    }
+  end
+
   expense_lines = []
   if params[:description]
     params[:description].each_with_index do |description, index|

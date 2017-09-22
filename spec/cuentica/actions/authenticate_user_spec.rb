@@ -5,7 +5,7 @@ describe "Authenticate a user" do
 
       pepito_perez = finder.run("12345678Z", "password")
 
-      expect(pepito_perez["cif"]).to eq "12345678Z"
+      expect(pepito_perez.cif).to eq "12345678Z"
     end
   end
 

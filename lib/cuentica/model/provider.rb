@@ -1,14 +1,28 @@
 module Cuentica
+  class Provider
+    attr_reader :id, :cif
+
+    def initialize(args)
+      @id = args['id']
+      @cif = args['cif']
+    end
+
+    def ==(obj)
+      @cif == obj.cif
+    end
+  end
+
   class ProviderService
     def initialize(cuentica_client)
       @cuentica_client = cuentica_client
     end
-    
+
     def find_provider(cif)
       providers = @cuentica_client.get_providers
-      providers.find do |provider|
+      found = providers.find do |provider|
         provider["cif"] == cif
       end
+      Provider.new(found)
     end
   end
 end
