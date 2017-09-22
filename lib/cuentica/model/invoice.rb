@@ -74,7 +74,7 @@ module Cuentica
       args[:document_number] = invoice.document_number
       args[:date] = invoice.date.to_s
       args[:provider] = invoice.provider_id
-
+      
       args[:expense_lines] = expense_lines_information(invoice.lines)
       args[:payments] = payment_information(invoice)
       args[:attachment] = attachment_information(invoice)
@@ -89,6 +89,7 @@ module Cuentica
         expense_line[:expense_type] = PROFESSIONAL_SERVICES_EXPENSE_TYPE
         expense_line[:investment] = false
         expense_line[:imputation] = 100
+        expense_lines.push(expense_line)
       end
       expense_lines
     end
