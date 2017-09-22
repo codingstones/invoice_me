@@ -40,8 +40,10 @@ module Cuentica
     end
 
     PROFESSIONAL_SERVICES_EXPENSE_TYPE = "623"
-    def add_required_info_to_expense_lines(expense_lines)
-      expense_lines.each do |expense_line|
+    def add_required_info_to_expense_lines(lines)
+      expense_lines = []
+      lines.each do |line|
+        expense_line = line.to_h
         expense_line[:expense_type] = PROFESSIONAL_SERVICES_EXPENSE_TYPE
         expense_line[:investment] = false
         expense_line[:imputation] = 100
