@@ -1,9 +1,10 @@
 describe "Authenticate a user" do
+  before(:each) do
+    @authenticate_a_user_action = Cuentica::Factory.new.authenticate_a_user_action
+  end
   it "when the credentials are ok" do
     VCR.use_cassette("find_a_provider") do
-      finder = Cuentica::AuthenticateAUser.new()
-
-      pepito_perez = finder.run("12345678Z", "password")
+      pepito_perez = @authenticate_a_user_action.run("12345678Z", "password")
 
       expect(pepito_perez.cif).to eq "12345678Z"
     end
@@ -11,9 +12,7 @@ describe "Authenticate a user" do
 
   it "when the credentials are wrong" do
     VCR.use_cassette("find_a_provider") do
-      finder = Cuentica::AuthenticateAUser.new()
-
-      pepito_perez = finder.run("12345678Z", "")
+      pepito_perez = @authenticate_a_user_action.run("12345678Z", "")
 
       expect(pepito_perez).to be_nil
     end

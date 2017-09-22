@@ -1,6 +1,6 @@
 module Cuentica
   class AuthenticateAUser
-    def initialize(provider_repository = ProviderRepository.new(CuenticaClient.new))
+    def initialize(provider_repository)
       @provider_repository = provider_repository
     end
 
