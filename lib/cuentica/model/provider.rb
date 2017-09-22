@@ -12,7 +12,7 @@ module Cuentica
     end
   end
 
-  class ProviderService
+  class ProviderRepository
     def initialize(cuentica_client)
       @cuentica_client = cuentica_client
     end
