@@ -12,7 +12,7 @@ module Cuentica
   end
 
   class AddInvoice
-    def initialize(cuentica = CuenticaClient.new, invoice_validator = InvoiceValidator.new, provider_repository = ProviderRepository.new(CuenticaClient.new))
+    def initialize(cuentica, invoice_validator, provider_repository)
       @cuentica = cuentica
       @invoice_validator = invoice_validator
       @provider_repository = provider_repository

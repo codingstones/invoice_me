@@ -8,7 +8,7 @@ describe "Add An Invoice" do
   let(:a_invoice_number) {"17/2017"}
 
   before(:each) do
-    @add_invoice = Cuentica::AddInvoice.new
+    @add_invoice = Cuentica::Factory.new.add_invoice_action
   end
 
   it "with valid data" do
