@@ -9,7 +9,7 @@ module Cuentica
       @provider_id = args[:provider_id]
       @lines = args[:lines].map do |line_args|
         Line.new(line_args)
-      end
+      end if args[:lines]
       @attachment = Attachment.new(args[:attachment]) if args[:attachment]
     end
 
@@ -53,6 +53,58 @@ module Cuentica
         :base => @base,
         :vat => @vat,
         :retention => @retention
+      }
+    end
+  end
+
+  class InvoiceRepository
+    def initialize(cuentica_client)
+      @cuentica_client = cuentica_client
+    end
+
+    def put(invoice)
+      expense_args = map_invoice_to_expense(invoice)
+      entry = @cuentica_client.register_expense(expense_args)
+
+      Invoice.new(id: entry["id"])
+    end
+
+    def map_invoice_to_expense(invoice)
+      args = {document_type: 'invoice', draft: false}
+      args[:document_number] = invoice.document_number
+      args[:date] = invoice.date.to_s
+      args[:provider] = invoice.provider_id
+
+      args[:expense_lines] = expense_lines_information(invoice.lines)
+      args[:payments] = payment_information(invoice)
+      args[:attachment] = attachment_information(invoice)
+      args
+    end
+
+    PROFESSIONAL_SERVICES_EXPENSE_TYPE = "623"
+    def expense_lines_information(lines)
+      expense_lines = []
+      lines.each do |line|
+        expense_line = line.to_h
+        expense_line[:expense_type] = PROFESSIONAL_SERVICES_EXPENSE_TYPE
+        expense_line[:investment] = false
+        expense_line[:imputation] = 100
+      end
+      expense_lines
+    end
+
+    def payment_information(invoice)
+      date = invoice.date.to_s
+      [{date: date, amount: invoice.total_amount, payment_method: 'wire_transfer', paid: false, origin_account: 37207}]
+    end
+
+    def attachment_information(invoice)
+      require "base64"
+
+      return unless invoice.attachment
+      {
+        filename: invoice.attachment.filename,
+        data: Base64.encode64(invoice.attachment.data)
       }
     end
   end
