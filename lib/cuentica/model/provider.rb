@@ -17,7 +17,7 @@ module Cuentica
       @cuentica_client = cuentica_client
     end
 
-    def find_provider(cif)
+    def get(cif)
       providers = @cuentica_client.get_providers
       found = providers.find do |provider|
         provider["cif"] == cif

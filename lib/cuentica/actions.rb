@@ -5,7 +5,7 @@ module Cuentica
     end
 
     def run(cif, password)
-      provider = @provider_repository.find_provider(cif)
+      provider = @provider_repository.get(cif)
 
       provider if password == "password"
     end
@@ -54,7 +54,7 @@ module Cuentica
     end
 
     def provider_id(cif)
-      provider = @provider_repository.find_provider(cif)
+      provider = @provider_repository.get(cif)
       provider.id
     end
   end

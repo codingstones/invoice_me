@@ -11,7 +11,7 @@ describe "Prodiver Repository" do
   end
 
   it "find a provider" do
-    pepito_perez = @provider_repository.find_provider(a_cif)
+    pepito_perez = @provider_repository.get(a_cif)
 
     expect(pepito_perez).to eq found_provider
   end
