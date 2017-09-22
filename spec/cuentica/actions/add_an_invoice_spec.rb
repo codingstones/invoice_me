@@ -17,7 +17,7 @@ describe "Add An Invoice" do
           expense_lines: some_expense_lines, document_number: a_invoice_number)
 
       expect(invoice).not_to be_nil
-      expect(invoice["id"]).not_to be_nil
+      expect(invoice.id).not_to be_nil
     end
   end
 

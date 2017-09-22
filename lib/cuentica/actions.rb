@@ -31,7 +31,8 @@ module Cuentica
 
       args[:provider] = provider_id(cif)
 
-      invoice = @cuentica.register_expense(args)
+      raw = @cuentica.register_expense(args)
+      Invoice.new(raw)
     end
 
     private
