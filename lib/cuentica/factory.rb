@@ -21,7 +21,7 @@ module Cuentica
     end
 
     def add_invoice_action
-      @add_invoice_action ||= AddInvoice.new(cuentica_client, invoice_validator, provider_repository)
+      @add_invoice_action ||= AddInvoice.new(cuentica_client, invoice_validator)
     end
   end
 end

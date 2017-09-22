@@ -12,10 +12,9 @@ module Cuentica
   end
 
   class AddInvoice
-    def initialize(cuentica, invoice_validator, provider_repository)
+    def initialize(cuentica, invoice_validator)
       @cuentica = cuentica
       @invoice_validator = invoice_validator
-      @provider_repository = provider_repository
     end
 
     def run(provider_id, args)
