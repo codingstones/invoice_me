@@ -65,6 +65,14 @@ module Cuentica
     SCHEMA = Dry::Validation.Schema do
       required(:document_number).filled(:str?)
       required(:date).filled
+      required(:lines).each do
+        schema do
+          required(:description).filled(:str?)
+          required(:base).filled(:number?)
+          required(:vat).filled(:int?)
+          required(:retention).filled(:int?)
+        end
+      end
     end
 
     def validate(args)
