@@ -69,11 +69,6 @@ module Cuentica
         data: Base64.encode64(invoice.attachment.data)
       }
     end
-
-    def provider_id(cif)
-      provider = @provider_repository.get(cif)
-      provider.id
-    end
   end
 
   class InvoiceValidator
