@@ -32,13 +32,15 @@ module Cuentica
   end
 
   class Line
-    attr_reader :description, :base, :vat, :retention
+    attr_reader :description, :base, :vat, :retention, :expense_type
 
+    PROFESSIONAL_SERVICES_EXPENSE_TYPE = "623"
     def initialize(args)
       @description = args[:description]
       @base = args[:base]
       @vat = args[:vat]
       @retention = args[:retention]
+      @expense_type = PROFESSIONAL_SERVICES_EXPENSE_TYPE
     end
 
     def amount
@@ -52,7 +54,8 @@ module Cuentica
         :description => @description,
         :base => @base,
         :vat => @vat,
-        :retention => @retention
+        :retention => @retention,
+        :expense_type => @expense_type
       }
     end
   end
@@ -74,19 +77,17 @@ module Cuentica
       args[:document_number] = invoice.document_number
       args[:date] = invoice.date.to_s
       args[:provider] = invoice.provider_id
-      
+
       args[:expense_lines] = expense_lines_information(invoice.lines)
       args[:payments] = payment_information(invoice)
       args[:attachment] = attachment_information(invoice)
       args
     end
 
-    PROFESSIONAL_SERVICES_EXPENSE_TYPE = "623"
     def expense_lines_information(lines)
       expense_lines = []
       lines.each do |line|
         expense_line = line.to_h
-        expense_line[:expense_type] = PROFESSIONAL_SERVICES_EXPENSE_TYPE
         expense_line[:investment] = false
         expense_line[:imputation] = 100
         expense_lines.push(expense_line)
