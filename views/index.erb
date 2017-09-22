@@ -41,10 +41,12 @@
       </ul>
     <%end%>
 
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
       <label>Número de factura<input type="text" name="document_number"/></label>
       <br>
-      <label>Fechs<input type="date" name="date"/></label>
+      <label>Fecha<input type="date" name="date"/></label>
+      <br>
+      <label>Adjunta tu factura<input type="file" name="file"/></label>
       <br>
       <h2>Líneas de factura</h2>
       <ul id="lines">
