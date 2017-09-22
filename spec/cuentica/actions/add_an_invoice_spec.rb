@@ -22,7 +22,7 @@ describe "Add An Invoice" do
     end
     it "adds the invoice" do
       expect(@result).not_to be_nil
-      expect(@result["id"]).not_to be_nil
+      expect(@result.id).not_to be_nil
     end
   end
 
