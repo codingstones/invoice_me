@@ -5,6 +5,10 @@ require 'rack/test'
 
 require_relative '../app'
 
+def description_for(method)
+  method.to_s.tr('_', ' ').gsub('create', '').strip
+end
+
 module SinatraMixin
   include Rack::Test::Methods
 
