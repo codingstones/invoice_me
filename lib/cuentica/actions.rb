@@ -20,7 +20,8 @@ module Cuentica
 
     def run(provider_id, args)
       @invoice_validator.validate(args)
-      
+
+      args[:provider_id] = provider_id
       invoice = Invoice.new(args)
 
       expense_args = map_invoice_to_expense(provider_id, invoice)

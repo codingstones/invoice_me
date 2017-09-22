@@ -1,14 +1,15 @@
 module Cuentica
   class Invoice
-    attr_reader :id, :document_number, :lines, :date, :attachment
+    attr_reader :id, :document_number, :lines, :date, :attachment, :provider_id
 
     def initialize(args)
       @id = args[:id]
+      @date = args[:date]
+      @document_number = args[:document_number]
+      @provider_id = args[:provider_id]
       @lines = args[:lines].map do |line_args|
         Line.new(line_args)
       end
-      @date = args[:date]
-      @document_number = args[:document_number]
       @attachment = Attachment.new(args[:attachment]) if args[:attachment]
     end
 
