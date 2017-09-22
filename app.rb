@@ -1,8 +1,9 @@
 require 'sinatra'
 require './lib/cuentica'
 
-add_invoice_action = Cuentica::AddInvoice.new
-autenticate_a_user = Cuentica::AuthenticateAUser.new
+factory = Cuentica::Factory.new
+add_invoice_action = factory.add_invoice_action
+autenticate_a_user = factory.authenticate_a_user_action
 
 enable :sessions
 
