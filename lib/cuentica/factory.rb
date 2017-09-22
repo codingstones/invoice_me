@@ -12,6 +12,10 @@ module Cuentica
       @provider_repository ||= ProviderRepository.new(cuentica_client)
     end
 
+    def invoice_repository
+      @invoice_repository ||= InvoiceRepository.new(cuentica_client)
+    end
+
     def invoice_validator
       @invoice_validator ||= InvoiceValidator.new
     end
