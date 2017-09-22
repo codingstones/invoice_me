@@ -19,15 +19,17 @@ module Cuentica
     end
 
     def run(cif, args)
+      @invoice_validator.validate(args)
+
+      invoice = Invoice.new(args)
+
       args[:date] = args[:date].to_s
       args[:document_type] = 'invoice'
       args[:draft] = false
 
-      amount_to_pay = calculate_total_amount(args[:expense_lines])
+      amount_to_pay = invoice.total_amount
       args[:expense_lines] = add_required_info_to_expense_lines(args[:expense_lines])
       args[:payments] = payment_information(args[:date], amount_to_pay)
-
-      @invoice_validator.validate(args)
 
       args[:provider] = provider_id(cif)
 
@@ -36,22 +38,6 @@ module Cuentica
     end
 
     private
-
-    def calculate_total_amount(expense_lines)
-      total_amount = 0
-      expense_lines.each do |expense|
-        base = expense[:base]
-        vat = expense[:vat]
-        retention = expense[:retention]
-
-        vat_amount = base*vat/100
-        retention_amount = base*retention/100
-
-        amount = base + (vat_amount - retention_amount)
-        total_amount += amount
-      end
-      total_amount
-    end
 
     PROFESSIONAL_SERVICS_EXPENSE_TYPE = "623"
     def add_required_info_to_expense_lines(expense_lines)
@@ -78,7 +64,7 @@ module Cuentica
 
     SCHEMA = Dry::Validation.Schema do
       required(:document_number).filled(:str?)
-      required(:date).filled(:str?)
+      required(:date).filled
     end
 
     def validate(args)
