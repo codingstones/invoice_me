@@ -18,23 +18,24 @@ module Cuentica
       @provider_repository = provider_repository
     end
 
-    def run(cif, args)
+    def run(provider_id, args)
       @invoice_validator.validate(args)
+      
       invoice = Invoice.new(args)
 
-      expense_args = map_invoice_to_expense(cif, invoice)
+      expense_args = map_invoice_to_expense(provider_id, invoice)
 
       @cuentica.register_expense(expense_args)
     end
 
     private
 
-    def map_invoice_to_expense(cif, invoice)
+    def map_invoice_to_expense(provider_id, invoice)
       args = {document_type: 'invoice', draft: false}
       args[:document_number] = invoice.document_number
       args[:date] = invoice.date.to_s
-      args[:provider] = provider_id(cif)
-      
+      args[:provider] = invoice.provider_id
+
       args[:expense_lines] = expense_lines_information(invoice.lines)
       args[:payments] = payment_information(invoice)
       args[:attachment] = attachment_information(invoice)

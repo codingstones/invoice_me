@@ -1,5 +1,5 @@
 describe "Add An Invoice" do
-  let(:provider_cif) {"12345678Z"}
+  let(:provider_id) {"12345678Z"}
   let(:a_day) {Date.today}
   let(:an_amount) {1000}
   let(:some_expense_lines) do
@@ -15,7 +15,7 @@ describe "Add An Invoice" do
   context "with valid data" do
     before(:each) do
       VCR.use_cassette("add_invoice") do
-        @result = @add_invoice.run(provider_cif, date: a_day,
+        @result = @add_invoice.run(provider_id, date: a_day,
             lines: some_expense_lines, document_number: a_invoice_number,
             attachment: an_attachment)
       end
@@ -29,14 +29,14 @@ describe "Add An Invoice" do
   context "fails" do
     it "without invoice number" do
       VCR.use_cassette("add_invoice") do
-      expect{@add_invoice.run(provider_cif, date: a_day,
+      expect{@add_invoice.run(provider_id, date: a_day,
         expense_lines: some_expense_lines)}.to raise_error(Cuentica::InvalidInvoiceError)
       end
     end
 
     it "without date" do
       VCR.use_cassette("add_invoice") do
-      expect{@add_invoice.run(provider_cif, expense_lines: some_expense_lines,
+      expect{@add_invoice.run(provider_id, expense_lines: some_expense_lines,
         document_number: a_invoice_number)}.to raise_error(Cuentica::InvalidInvoiceError)
       end
     end

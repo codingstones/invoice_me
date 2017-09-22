@@ -8,7 +8,7 @@ autenticate_a_user = factory.authenticate_a_user_action
 enable :sessions
 
 def is_authenticated!
-  redirect '/login' unless session[:current_cif]
+  redirect '/login' unless session[:current_user]
 end
 
 get '/login' do
@@ -18,7 +18,7 @@ end
 post '/login' do
   user = autenticate_a_user.run(params[:user], params[:password])
   if user
-    session[:current_cif] = user.cif
+    session[:current_user] = user
     redirect '/'
   else
     status 422
@@ -35,7 +35,7 @@ end
 post '/' do
   is_authenticated!
 
-  cif = session[:current_cif]
+  provider_id = session[:current_user].id
 
   if params[:file]
     filename = params[:file][:filename]
@@ -61,7 +61,7 @@ post '/' do
   params[:lines] = lines
 
   begin
-    invoice = add_invoice_action.run(cif, params)
+    invoice = add_invoice_action.run(provider_id, params)
     redirect '/'
   rescue Cuentica::InvalidInvoiceError => e
     status 422
