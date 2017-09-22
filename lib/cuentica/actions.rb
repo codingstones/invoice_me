@@ -33,14 +33,16 @@ module Cuentica
       args = {document_type: 'invoice', draft: false}
       args[:document_number] = invoice.document_number
       args[:date] = invoice.date.to_s
-      args[:expense_lines] = add_required_info_to_expense_lines(invoice.lines)
       args[:provider] = provider_id(cif)
-      args[:payments] = payment_information(args[:date], invoice.total_amount)
+      
+      args[:expense_lines] = expense_lines_information(invoice.lines)
+      args[:payments] = payment_information(invoice)
+      args[:attachment] = attachment_information(invoice)
       args
     end
 
     PROFESSIONAL_SERVICES_EXPENSE_TYPE = "623"
-    def add_required_info_to_expense_lines(lines)
+    def expense_lines_information(lines)
       expense_lines = []
       lines.each do |line|
         expense_line = line.to_h
@@ -51,8 +53,19 @@ module Cuentica
       expense_lines
     end
 
-    def payment_information(date, total_amount)
-      [{date: date, amount: total_amount, payment_method: 'wire_transfer', paid: false, origin_account: 37207}]
+    def payment_information(invoice)
+      date = invoice.date.to_s
+      [{date: date, amount: invoice.total_amount, payment_method: 'wire_transfer', paid: false, origin_account: 37207}]
+    end
+
+    def attachment_information(invoice)
+      require "base64"
+
+      return unless invoice.attachment
+      {
+        filename: invoice.attachment.filename,
+        data: Base64.encode64(invoice.attachment.data)
+      }
     end
 
     def provider_id(cif)

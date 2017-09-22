@@ -1,6 +1,6 @@
 module Cuentica
   class Invoice
-    attr_reader :id, :document_number, :lines, :date
+    attr_reader :id, :document_number, :lines, :date, :attachment
 
     def initialize(args)
       @id = args[:id]
@@ -9,6 +9,7 @@ module Cuentica
       end
       @date = args[:date]
       @document_number = args[:document_number]
+      @attachment = Attachment.new(args[:attachment]) if args[:attachment]
     end
 
     def total_amount
@@ -17,6 +18,15 @@ module Cuentica
         total_amount += line.amount
       end
       total_amount
+    end
+  end
+
+  class Attachment
+    attr_reader :filename, :data
+
+    def initialize(args)
+      @filename = args[:filename]
+      @data = args[:data]
     end
   end
 
