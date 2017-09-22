@@ -34,7 +34,7 @@ end
 post '/' do
   is_authenticated!
 
-  params[:cif] = session[:current_cif]
+  cif = session[:current_cif]
   expense_lines = []
   if params[:description]
     params[:description].each_with_index do |description, index|
@@ -49,7 +49,7 @@ post '/' do
   params[:expense_lines] = expense_lines
 
   begin
-    invoice = add_invoice_action.run(params)
+    invoice = add_invoice_action.run(cif, params)
     redirect '/'
   rescue Cuentica::InvalidInvoiceError => e
     status 422
