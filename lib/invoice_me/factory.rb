@@ -27,5 +27,9 @@ module InvoiceMe
     def add_invoice_action
       @add_invoice_action ||= AddInvoice.new(invoice_repository, invoice_validator)
     end
+
+    def get_invoices_by_provider_action
+      @get_invoices_by_provider_action ||= GetInvoicesByProvider.new(invoice_repository)
+    end
   end
 end

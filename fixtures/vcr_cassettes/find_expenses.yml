@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.cuentica.com/expense
+    body:
+      encoding: US-ASCII
+      string: provider=348489
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.cuentica.com
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Auth-Token:
+      - MGYO_Mvtupqz7zOQ5GtrItvLNpccC83muYXQMnvjzAjStB.p89FLn4--F0UCE55HPCyM6Wm8f5SMUzhq
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Vary:
+      - Accept-Encoding
+      X-Ratelimit-Limit:
+      - '1'
+      X-Ratelimit-Reset:
+      - '1506341400'
+      X-Pagination-Pagesize:
+      - '300'
+      X-Ratelimit-Remaining:
+      - '749'
+      X-Pagination-Currentpage:
+      - '1'
+      X-Pagination-Totalelements:
+      - '3'
+      Date:
+      - Mon, 25 Sep 2017 12:09:12 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '484'
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"id":861784,"date":"2017-12-12","draft":false,"provider":{"id":348489,"cif":"12345678Z","tradename":"Pepito
+        perez","business_type":"company","business_name":"Pepito perez","address":"rue
+        del percebe 13","postal_code":"50001","town":"Zaragoza","region":"Zaragoza","country_code":"ES","phone":"","email":"","web":"","fax":"","personal_comment":"password","default_expense_type":"600","default_retention":0},"document_type":"invoice","document_number":"cuatroaaa","annotations":"","expense_details":{"base":100,"vat":21,"retention":15,"surcharge":0,"total_expense":106,"paid":0,"left":106},"expense_lines":[{"id":1097394,"draft":false,"investment":false,"description":"test","base":100,"vat":21,"vat_amount":21,"surcharge":0,"surcharge_amount":0,"retention":15,"imputation":100,"expense_type":"623"}],"has_attachment":true},{"id":861790,"date":"2017-12-12","draft":false,"provider":{"id":348489,"cif":"12345678Z","tradename":"Pepito
+        perez","business_type":"company","business_name":"Pepito perez","address":"rue
+        del percebe 13","postal_code":"50001","town":"Zaragoza","region":"Zaragoza","country_code":"ES","phone":"","email":"","web":"","fax":"","personal_comment":"password","default_expense_type":"600","default_retention":0},"document_type":"invoice","document_number":"cuatroaaa","annotations":"","expense_details":{"base":100,"vat":21,"retention":15,"surcharge":0,"total_expense":106,"paid":0,"left":106},"expense_lines":[{"id":1097400,"draft":false,"investment":false,"description":"test","base":100,"vat":21,"vat_amount":21,"surcharge":0,"surcharge_amount":0,"retention":15,"imputation":100,"expense_type":"623"}],"has_attachment":true},{"id":861855,"date":"2017-12-12","draft":false,"provider":{"id":348489,"cif":"12345678Z","tradename":"Pepito
+        perez","business_type":"company","business_name":"Pepito perez","address":"rue
+        del percebe 13","postal_code":"50001","town":"Zaragoza","region":"Zaragoza","country_code":"ES","phone":"","email":"","web":"","fax":"","personal_comment":"password","default_expense_type":"600","default_retention":0},"document_type":"invoice","document_number":"cuatroaaa","annotations":"","expense_details":{"base":100,"vat":21,"retention":15,"surcharge":0,"total_expense":106,"paid":0,"left":106},"expense_lines":[{"id":1097479,"draft":false,"investment":false,"description":"test","base":100,"vat":21,"vat_amount":21,"surcharge":0,"surcharge_amount":0,"retention":15,"imputation":100,"expense_type":"623"}],"has_attachment":true}]'
+    http_version: 
+  recorded_at: Mon, 25 Sep 2017 12:09:12 GMT
+recorded_with: VCR 3.0.3

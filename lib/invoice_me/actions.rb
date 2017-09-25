@@ -11,6 +11,16 @@ module InvoiceMe
     end
   end
 
+  class GetInvoicesByProvider
+    def initialize(invoice_repository)
+      @invoice_repository = invoice_repository
+    end
+
+    def run(provider_id)
+      @invoice_repository.find_by_provider(provider_id)
+    end
+  end
+
   class AddInvoice
     def initialize(invoice_repository, invoice_validator)
       @invoice_repository = invoice_repository
