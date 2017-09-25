@@ -4,6 +4,7 @@ require './lib/invoice_me'
 factory = InvoiceMe::Factory.new
 add_invoice_action = factory.add_invoice_action
 autenticate_a_user = factory.authenticate_a_user_action
+get_invoices_by_provider = factory.get_invoices_by_provider_action
 
 enable :sessions
 
@@ -28,11 +29,17 @@ end
 
 get '/' do
   is_authenticated!
-
-  erb :index, :locals => {:errors => nil}
+  
+  erb :index
 end
 
-post '/' do
+get '/new' do
+  is_authenticated!
+
+  erb :new, :locals => {:errors => nil}
+end
+
+post '/new' do
   is_authenticated!
 
   provider_id = session[:current_user].id
@@ -62,9 +69,9 @@ post '/' do
 
   begin
     invoice = add_invoice_action.run(provider_id, params)
-    redirect '/'
+    redirect '/new'
   rescue InvoiceMe::InvalidInvoiceError => e
     status 422
-    erb :index, :locals => {:errors => e.messages}
+    erb :new, :locals => {:errors => e.messages}
   end
 end

@@ -6,7 +6,7 @@ describe 'Add Invoice' do
   end
 
   it 'the form is shown' do
-    get '/'
+    get '/new'
 
     expect(last_response).to be_ok
   end
@@ -24,7 +24,7 @@ describe 'Add Invoice' do
     end
     it 'redirects' do
       VCR.use_cassette("add_invoice") do
-        post '/', the_params
+        post '/new', the_params
         expect(last_response).to be_redirect
       end
     end
@@ -33,7 +33,7 @@ describe 'Add Invoice' do
       let(:invalid_params) {{foo: 'bar'}}
       it 'show errors' do
         VCR.use_cassette("add_invoice") do
-          post '/', invalid_params
+          post '/new', invalid_params
           expect(last_response.status).to eq 422
         end
       end

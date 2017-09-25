@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>Registra tus facturas</title>
+  </head>
+  <script src="/app.js">
+  </script>
+  <body>
+    <h1>Registra tus facturas</h1>
+
+    <%if errors%>
+      <ul>
+        <%errors.each do |error|%>
+        <li><%=error[0]%>: <%=error[1]%></li>
+        <%end%>
+      </ul>
+    <%end%>
+
+    <form method="POST" enctype="multipart/form-data">
+      <label>Número de factura<input type="text" name="document_number"/></label>
+      <br>
+      <label>Fecha<input type="date" name="date"/></label>
+      <br>
+      <label>Adjunta tu factura<input type="file" name="file"/></label>
+      <br>
+      <h2>Líneas de factura</h2>
+      <ul id="lines">
+        <li>
+          <label>Descripción<input type="text" name="description[]"></label>
+          <label>Base<input type="number" name="base[]"></label>
+          <label>IVA<input type="text" name="vat[]" value="21"></label>
+          <label>Retención<input type="text" name="retention[]" value="15"></label>
+        </li>
+      </ul>
+      <br><br>
+      <a href="" id="adder">Añadir nueva línea</a>
+      <br><br><br>
+      <input type="submit" value="Registrar factura">
+    </form>
+  </body>
+<html>
