@@ -17,7 +17,8 @@ module InvoiceMe
     def deserialize(raw)
       Provider.new(
         id: raw["id"],
-        cif: raw["cif"])
+        cif: raw["cif"],
+        password: raw["personal_comment"])
     end
   end
 end

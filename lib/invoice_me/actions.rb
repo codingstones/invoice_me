@@ -7,7 +7,7 @@ module InvoiceMe
     def run(username, password)
       provider = @provider_repository.get(username)
 
-      provider if password == "password"
+      provider if password == provider.password
     end
   end
 
