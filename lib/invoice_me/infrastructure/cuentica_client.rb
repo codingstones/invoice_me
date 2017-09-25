@@ -1,4 +1,4 @@
-module Cuentica
+module InvoiceMe
   class CuenticaClient
     def initialize(client = HttpClient.new(ENV['AUTH_TOKEN']))
       @client = client
