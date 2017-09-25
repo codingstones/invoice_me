@@ -5,7 +5,7 @@ module Cuentica
     end
 
     def put(invoice)
-      expense_args = map_invoice_to_expense(invoice)
+      expense_args = serialize(invoice)
       entry = @cuentica_client.register_expense(expense_args)
       deserialize(entry)
     end
@@ -34,19 +34,19 @@ module Cuentica
       end
     end
 
-    def map_invoice_to_expense(invoice)
+    def serialize(invoice)
       args = {document_type: 'invoice', draft: false}
       args[:document_number] = invoice.document_number
       args[:date] = invoice.date.to_s
       args[:provider] = invoice.provider_id
 
-      args[:expense_lines] = expense_lines_information(invoice.lines)
-      args[:payments] = payment_information(invoice)
-      args[:attachment] = attachment_information(invoice)
+      args[:expense_lines] = serialize_expense_lines(invoice.lines)
+      args[:payments] = serialize_payment_information(invoice)
+      args[:attachment] = serialize_attachment(invoice)
       args
     end
 
-    def expense_lines_information(lines)
+    def serialize_expense_lines(lines)
       expense_lines = []
       lines.each do |line|
         expense_line = line.to_h
@@ -57,12 +57,12 @@ module Cuentica
       expense_lines
     end
 
-    def payment_information(invoice)
+    def serialize_payment_information(invoice)
       date = invoice.date.to_s
       [{date: date, amount: invoice.total_amount, payment_method: 'wire_transfer', paid: false, origin_account: 37207}]
     end
 
-    def attachment_information(invoice)
+    def serialize_attachment(invoice)
       require "base64"
 
       return unless invoice.attachment
