@@ -4,8 +4,8 @@ module InvoiceMe
       @provider_repository = provider_repository
     end
 
-    def run(cif, password)
-      provider = @provider_repository.get(cif)
+    def run(username, password)
+      provider = @provider_repository.get(username)
 
       provider if password == "password"
     end

@@ -6,7 +6,7 @@ describe "Authenticate a user" do
     VCR.use_cassette("find_a_provider") do
       pepito_perez = @authenticate_a_user_action.run("12345678Z", "password")
 
-      expect(pepito_perez.cif).to eq "12345678Z"
+      expect(pepito_perez).not_to be_nil
     end
   end
 
