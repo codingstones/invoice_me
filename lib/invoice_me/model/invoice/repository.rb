@@ -69,7 +69,7 @@ module InvoiceMe
       return unless invoice.attachment
       {
         filename: invoice.attachment.filename,
-        data: Base64.encode64(invoice.attachment.data)
+        data: Base64.strict_encode64(invoice.attachment.data)
       }
     end
   end
