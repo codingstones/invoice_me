@@ -2,7 +2,7 @@
 
 Esta es una pequeña aplicación web para recibir facturas de proveedores. En este caso integrado con [Cuéntica](https://cuentica.com/) a través de [su API](https://apidocs.cuentica.com/versions/latest_release/).
 
-##Instrucciones para la puesta en marcha
+## Instrucciones para la puesta en marcha
 
 Clona el proyecto:
 
