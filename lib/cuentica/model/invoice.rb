@@ -68,8 +68,31 @@ module Cuentica
     def put(invoice)
       expense_args = map_invoice_to_expense(invoice)
       entry = @cuentica_client.register_expense(expense_args)
+      deserialize(entry)
+    end
 
-      Invoice.new(id: entry["id"])
+    private
+
+    def deserialize(entry)
+      Invoice.new(
+        id: entry["id"],
+        document_number: entry["document_number"],
+        date: entry["date"],
+        provider_id: entry["provider"]["id"],
+        lines: deserialize_lines(entry["expense_lines"])
+      )
+    end
+
+    def deserialize_lines(expense_lines)
+      expense_lines.map do |expense_line|
+        {
+          description: expense_line['description'],
+          base: expense_line['base'],
+          vat: expense_line['vat'],
+          retention: expense_line['retention'],
+          expense_type: expense_line['expense_type']
+        }
+      end
     end
 
     def map_invoice_to_expense(invoice)
