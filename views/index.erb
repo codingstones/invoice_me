@@ -4,22 +4,22 @@
   </head>
   <script>
   const LINE_TEMPLATE = `
-  <li>
     <label>Descripción<input type="text" name="description[]"></label>
     <label>Base<input type="number" name="base[]" ></label>
     <label>IVA<input type="text" name="vat[]" value="21"></label>
     <label>Retención<input type="text" name="retention[]" value="15"></label>
     <a href="">Eliminar</a>
-  </li>`;
+  `;
 
   function addNewLine(){
     const lines = document.querySelector('#lines');
-    const newLine = document.createRange().createContextualFragment(LINE_TEMPLATE);
+    const newLine = document.createElement("li");
+    newLine.innerHTML = LINE_TEMPLATE;
     newLine.querySelector('a').addEventListener('click', (event) => {
       event.preventDefault();
-      lines.removeChild(newLine);
+      newLine.parentElement.removeChild(newLine);
     });
-    lines.appendChild(newLine);
+    lines.appendChild(newLine)
   }
 
   document.addEventListener('DOMContentLoaded', function () {
