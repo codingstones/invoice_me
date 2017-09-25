@@ -1,4 +1,4 @@
-module Cuentica
+module InvoiceMe
   class InvalidInvoiceError < StandardError
       attr_reader :messages
 

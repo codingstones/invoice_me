@@ -1,4 +1,4 @@
-module Cuentica
+module InvoiceMe
   class Invoice
     attr_reader :id, :document_number, :lines, :date, :attachment, :provider_id
 

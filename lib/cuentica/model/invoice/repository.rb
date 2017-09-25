@@ -1,4 +1,4 @@
-module Cuentica
+module InvoiceMe
   class InvoiceRepository
     def initialize(cuentica_client)
       @cuentica_client = cuentica_client

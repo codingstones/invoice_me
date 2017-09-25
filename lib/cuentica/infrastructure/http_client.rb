@@ -1,4 +1,4 @@
-module Cuentica
+module InvoiceMe
   class HttpClient
     require 'uri'
     require 'net/http'

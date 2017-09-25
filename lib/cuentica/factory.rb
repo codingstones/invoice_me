@@ -1,4 +1,4 @@
-module Cuentica
+module InvoiceMe
   class Factory
     def http_client
       @http_client ||= HttpClient.new(ENV['AUTH_TOKEN'])

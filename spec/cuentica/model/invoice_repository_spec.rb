@@ -8,7 +8,7 @@ describe "Invoice Repository" do
   }
 
   let(:an_invoice) {
-    Cuentica::Invoice.new(document_number: a_document_number,
+    InvoiceMe::Invoice.new(document_number: a_document_number,
     lines:[a_line])
   }
 
@@ -23,8 +23,8 @@ describe "Invoice Repository" do
   end
 
   before(:each) do
-    @cuentica_client = instance_double(Cuentica::CuenticaClient)
-    @invoice_repository = Cuentica::InvoiceRepository.new(@cuentica_client)
+    @cuentica_client = instance_double(InvoiceMe::CuenticaClient)
+    @invoice_repository = InvoiceMe::InvoiceRepository.new(@cuentica_client)
 
     allow(@cuentica_client).to receive(:register_expense).with(an_instance_of(Hash)).and_return(a_cuentica_response)
   end

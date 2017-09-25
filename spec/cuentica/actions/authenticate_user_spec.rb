@@ -1,6 +1,6 @@
 describe "Authenticate a user" do
   before(:each) do
-    @authenticate_a_user_action = Cuentica::Factory.new.authenticate_a_user_action
+    @authenticate_a_user_action = InvoiceMe::Factory.new.authenticate_a_user_action
   end
   it "when the credentials are ok" do
     VCR.use_cassette("find_a_provider") do

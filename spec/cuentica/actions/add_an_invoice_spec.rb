@@ -9,7 +9,7 @@ describe "Add An Invoice" do
   let(:an_attachment){ {filename: a_invoice_number, data: 'irrelevant data'} }
 
   before(:each) do
-    @add_invoice = Cuentica::Factory.new.add_invoice_action
+    @add_invoice = InvoiceMe::Factory.new.add_invoice_action
   end
 
   context "with valid data" do
@@ -30,14 +30,14 @@ describe "Add An Invoice" do
     it "without invoice number" do
       VCR.use_cassette("add_invoice") do
       expect{@add_invoice.run(provider_id, date: a_day,
-        expense_lines: some_expense_lines)}.to raise_error(Cuentica::InvalidInvoiceError)
+        expense_lines: some_expense_lines)}.to raise_error(InvoiceMe::InvalidInvoiceError)
       end
     end
 
     it "without date" do
       VCR.use_cassette("add_invoice") do
       expect{@add_invoice.run(provider_id, expense_lines: some_expense_lines,
-        document_number: a_invoice_number)}.to raise_error(Cuentica::InvalidInvoiceError)
+        document_number: a_invoice_number)}.to raise_error(InvoiceMe::InvalidInvoiceError)
       end
     end
   end

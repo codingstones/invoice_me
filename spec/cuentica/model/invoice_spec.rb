@@ -5,7 +5,7 @@ describe "Invoice" do
     ]
   end
   it "calculates total amount" do
-    invoice = Cuentica::Invoice.new(lines: some_lines)
+    invoice = InvoiceMe::Invoice.new(lines: some_lines)
 
     expect(invoice.total_amount).to eq 1060
   end

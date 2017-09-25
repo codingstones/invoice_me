@@ -1,4 +1,4 @@
-module Cuentica
+module InvoiceMe
   class AuthenticateAUser
     def initialize(provider_repository)
       @provider_repository = provider_repository

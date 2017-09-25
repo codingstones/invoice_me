@@ -1,7 +1,7 @@
 require 'sinatra'
 require './lib/cuentica'
 
-factory = Cuentica::Factory.new
+factory = InvoiceMe::Factory.new
 add_invoice_action = factory.add_invoice_action
 autenticate_a_user = factory.authenticate_a_user_action
 
@@ -63,7 +63,7 @@ post '/' do
   begin
     invoice = add_invoice_action.run(provider_id, params)
     redirect '/'
-  rescue Cuentica::InvalidInvoiceError => e
+  rescue InvoiceMe::InvalidInvoiceError => e
     status 422
     erb :index, :locals => {:errors => e.messages}
   end

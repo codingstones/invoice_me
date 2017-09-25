@@ -1,4 +1,4 @@
-module Cuentica
+module InvoiceMe
   class Provider
     attr_reader :id, :cif
 

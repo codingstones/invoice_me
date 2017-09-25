@@ -1,5 +1,5 @@
-describe Cuentica::Factory do
-  factory = Cuentica::Factory.new
+describe InvoiceMe::Factory do
+  factory = InvoiceMe::Factory.new
 
   factory.public_methods(false).each do |public_method|
     next unless factory.method(public_method).parameters.empty?

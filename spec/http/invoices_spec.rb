@@ -1,7 +1,7 @@
 describe 'Add Invoice' do
   before(:each) do
     get '/', {}, { 'rack.session' => {
-      current_user: Cuentica::Provider.new(id: "12345678Z") }
+      current_user: InvoiceMe::Provider.new(id: "12345678Z") }
     }
   end
 
