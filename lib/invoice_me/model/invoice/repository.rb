@@ -7,6 +7,7 @@ module InvoiceMe
     def put(invoice)
       expense_args = serialize(invoice)
       entry = @cuentica_client.register_expense(expense_args)
+      raise InvalidInvoiceError, entry if(entry["message"])
       deserialize(entry)
     end
 
