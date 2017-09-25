@@ -1,1 +1,22 @@
-todo
+<html>
+  <head>
+    <title>Tus facturas registradas</title>
+  </head>
+  <body>
+    <h1>Tus facturas registradas</h1>
+
+    <a href="/new">Registra una nueva!</a>
+
+    <ul>
+      <%invoices.each do |invoice|%>
+      <li>
+        <%=invoice.date%> - <%=invoice.document_number%> - Total: <%=invoice.total_amount%>€
+        <% invoice.lines.each do |line|%>
+          <br>
+          <%= line.description%>. Base: <%= line.base%>€. IVA: <%= line.vat%>%. Retención<%= line.retention%>%
+        <%end%>
+      </li>
+      <%end%>
+    </ul>
+  </body>
+</html>

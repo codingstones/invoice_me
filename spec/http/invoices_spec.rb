@@ -1,8 +1,16 @@
-describe 'Add Invoice' do
+describe 'Invoices' do
   before(:each) do
-    get '/', {}, { 'rack.session' => {
+    get '/new', {}, { 'rack.session' => {
       current_user: InvoiceMe::Provider.new(id: "12345678Z") }
     }
+  end
+
+  it 'get the invoices list' do
+    VCR.use_cassette("find_expenses") do
+      get '/'
+
+      expect(last_response).to be_ok
+    end
   end
 
   it 'the form is shown' do

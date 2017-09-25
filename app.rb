@@ -29,8 +29,11 @@ end
 
 get '/' do
   is_authenticated!
+
+  provider_id = session[:current_user].id
+  invoices = get_invoices_by_provider.run(provider_id)
   
-  erb :index
+  erb :index, :locals => {invoices: invoices}
 end
 
 get '/new' do
