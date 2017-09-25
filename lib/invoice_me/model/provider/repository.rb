@@ -9,7 +9,15 @@ module InvoiceMe
       found = providers.find do |provider|
         provider["cif"] == cif
       end
-      Provider.new(found)
+      deserialize(found)
+    end
+
+    private
+
+    def deserialize(raw)
+      Provider.new(
+        id: raw["id"],
+        cif: raw["cif"])
     end
   end
 end

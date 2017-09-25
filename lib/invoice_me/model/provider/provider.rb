@@ -3,8 +3,8 @@ module InvoiceMe
     attr_reader :id, :cif
 
     def initialize(args)
-      @id = args['id']
-      @cif = args['cif']
+      @id = args[:id]
+      @cif = args[:cif]
     end
 
     def ==(obj)
