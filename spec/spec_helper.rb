@@ -1,4 +1,4 @@
-require 'cuentica'
+require 'invoice_me'
 require 'date'
 require 'vcr'
 require 'rack/test'

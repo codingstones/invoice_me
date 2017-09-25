@@ -1,5 +1,5 @@
 require 'sinatra'
-require './lib/cuentica'
+require './lib/invoice_me'
 
 factory = InvoiceMe::Factory.new
 add_invoice_action = factory.add_invoice_action
