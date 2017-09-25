@@ -11,6 +11,11 @@ module InvoiceMe
       deserialize(entry)
     end
 
+    def find_by_provider(provider_id)
+      entries = @cuentica_client.get_expenses(provider: provider_id)
+      entries.map { |entry|  deserialize(entry)}
+    end
+
     private
 
     def deserialize(entry)

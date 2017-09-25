@@ -9,7 +9,7 @@ module InvoiceMe
       @auth_token = auth_token
     end
 
-    def get(endpoint)
+    def get(endpoint, params={})
       url = URI(endpoint)
 
       http = Net::HTTP.new(url.host, url.port)
@@ -17,6 +17,7 @@ module InvoiceMe
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
       request = Net::HTTP::Get.new(url)
+      request.set_form_data(params)
       request['X-AUTH-TOKEN'] = ENV['AUTH_TOKEN']
 
       response = http.request(request)

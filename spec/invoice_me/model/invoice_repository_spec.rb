@@ -66,4 +66,16 @@ describe "Invoice Repository" do
       end
     end
   end
+
+  context "get invoices by provider" do
+    before(:each) do
+      allow(@cuentica_client).to receive(:get_expenses).with(provider: a_provider_id).and_return([a_cuentica_success_response])
+    end
+
+    it "get a list" do
+      @invoices = @invoice_repository.find_by_provider(a_provider_id)
+
+      expect(@invoices.first.id).to eq a_cuentica_success_response["id"]
+    end
+  end
 end

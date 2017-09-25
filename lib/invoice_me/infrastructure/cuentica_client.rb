@@ -8,6 +8,10 @@ module InvoiceMe
       @client.post("https://api.cuentica.com/expense", args)
     end
 
+    def get_expenses(args)
+      @client.get("https://api.cuentica.com/expense", args)
+    end
+
     def get_providers
       @client.get("https://api.cuentica.com/provider")
     end
