@@ -8,4 +8,5 @@ group :development do
   gem 'vcr'
   gem 'webmock'
   gem 'rack-test'
+  gem 'cucumber'
 end
