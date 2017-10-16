@@ -1,8 +1,5 @@
 require 'vcr'
-require 'capybara/cucumber'
-require_relative '../../app'
-
-Capybara.app = Sinatra::Application
+require_relative '../../../app'
 
 VCR.configure do |config|
   config.cassette_library_dir = "fixtures/vcr_cassettes"
