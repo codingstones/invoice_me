@@ -9,4 +9,5 @@ group :development do
   gem 'webmock'
   gem 'rack-test'
   gem 'cucumber'
+  gem 'capybara'
 end
