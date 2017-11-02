@@ -27,7 +27,7 @@ post '/login' do
   end
 end
 
-post '/logout' do
+get '/logout' do
   session[:current_user] = nil
   redirect '/login'
 end

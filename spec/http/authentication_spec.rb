@@ -50,13 +50,13 @@ describe 'Authentication' do
     end
 
     it 'removes current_user to the session' do
-      post '/logout'
+      get '/logout'
 
       expect(last_request.env['rack.session'][:current_user]).to be_nil
     end
 
     it 'redirects to login' do
-      post '/logout'
+      get '/logout'
 
       expect(last_response).to be_redirect
     end
