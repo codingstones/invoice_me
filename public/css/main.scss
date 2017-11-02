@@ -23,6 +23,7 @@ $font_bold: 700;
 
 $text_color: #000;
 $grey: #888;
+$grey_light: #ccc;
 $red: #BB1A28;
 $orange: #CD631F;
 $green: #1BB32C;
@@ -191,13 +192,24 @@ input[type="text"], input[type="email"], input[type="password"]{
 }//.page-header
 
 .page-content{
-  padding: 80px 0px;
+  padding: 30px 0px 60px 0px;
   h1{
     margin: 0px 0px 40px 0px;
     padding: 0;
     font-size: to_rem(40);
     font-weight: $font_bold;
-  }
+    display: inline-block;
+  }//h1
+  .page-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 20px;
+    h1{
+      margin-top: 40px;
+    }
+  }//.page-title
   .login-form{
     width: 50%;
     margin: 0 auto;
@@ -205,7 +217,76 @@ input[type="text"], input[type="email"], input[type="password"]{
     p.submit{
       margin-top: 20px;
     }
-  }
+  }//.login-form
+  .invoices-list{
+    ul{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      li{
+        display: block;
+        position: relative;
+        border-bottom: 1px solid $grey;
+        padding: 20px 0px;
+        font-size: to_rem(18);
+        &:last-child{
+          border-bottom: none;
+        }
+        span.invoice-date, span.invoice-number, span.invoice-total{
+          font-weight: $font_bold;
+        }
+        span.invoice-date{
+          display: inline-block;
+          width: 120px;
+        }
+        ul{
+          li{
+            border: none;
+            padding: 0px 0px 0px 50px;
+            margin: 5px 0px 5px 130px;
+            position: relative;
+            &:before{
+              display: block;
+              content: "";
+              width: 30px;
+              height: 1px;
+              position: absolute;
+              top: 10px;
+              left: 0px;
+              background-color: $grey_light;
+            }
+            &:last-child{
+              margin-bottom: 0px;
+            }
+            span.description{
+              font-weight: $font_bold;
+            }
+            .more-info{
+              font-size: to_rem(14);
+              margin-top: 5px;
+            }
+          }//li
+        }//ul
+      }//li
+      a.download{
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0px;
+        font-weight: $font_bold;
+        color: $violet;
+        font-weight: $font_bold;
+        text-decoration: none;
+        padding: 4px 10px;
+        background-color: transparent;
+        &:hover{
+          background-color: $violet;
+          color: #fff;
+        }
+      }
+    }//ul
+  }//.invoices-list
 }//.page-content
 
 .page-footer{
@@ -262,6 +343,7 @@ input[type="text"], input[type="email"], input[type="password"]{
 .login{
   .page-content{
     text-align: center;
+    padding: 80px 0px;
   }
 }//.login
 

@@ -27,11 +27,22 @@
         <ul>
           <%invoices.each do |invoice|%>
           <li>
-            <%=invoice.date%> - <%=invoice.document_number%> - Total: <%=invoice.total_amount%>€
+            <span class="invoice-date"><%=invoice.date%></span>
+            <span class="invoice-number"><%=invoice.document_number%></span> ||
+            <span class="invoice-total">Total: <%=invoice.total_amount%>&euro;</span>
+            <ul class="invoice-description">
             <% invoice.lines.each do |line|%>
-              <br>
-              <%= line.description%>. Base: <%= line.base%>€. IVA: <%= line.vat%>%. Retención<%= line.retention%>%
+              <li>
+                <span class="description"><%= line.description%></span>
+                <div class="more-info">
+                  <span class="amount">Base: <%= line.base%>&euro;</span> ||
+                  <span class="vat">IVA: <%= line.vat%>%</span> ||
+                  <span class="retention">Retención: <%= line.retention%>%</span>
+                </div><!-- .more-info -->
+              </li>
             <%end%>
+            </ul>
+            <a href="#" class="download">Descargar en PDF</a>
           </li>
           <%end%>
         </ul>

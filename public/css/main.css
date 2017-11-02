@@ -140,18 +140,80 @@ input[type="text"], input[type="email"], input[type="password"] {
             background-color: #fff; }
 
 .page-content {
-  padding: 80px 0px; }
+  padding: 30px 0px 60px 0px; }
   .page-content h1 {
     margin: 0px 0px 40px 0px;
     padding: 0;
     font-size: 2.5rem;
-    font-weight: 700; }
+    font-weight: 700;
+    display: inline-block; }
+  .page-content .page-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 20px; }
+    .page-content .page-title h1 {
+      margin-top: 40px; }
   .page-content .login-form {
     width: 50%;
     margin: 0 auto;
     text-align: left; }
     .page-content .login-form p.submit {
       margin-top: 20px; }
+  .page-content .invoices-list ul {
+    margin: 0;
+    padding: 0;
+    list-style: none; }
+    .page-content .invoices-list ul li {
+      display: block;
+      position: relative;
+      border-bottom: 1px solid #888;
+      padding: 20px 0px;
+      font-size: 1.125rem; }
+      .page-content .invoices-list ul li:last-child {
+        border-bottom: none; }
+      .page-content .invoices-list ul li span.invoice-date, .page-content .invoices-list ul li span.invoice-number, .page-content .invoices-list ul li span.invoice-total {
+        font-weight: 700; }
+      .page-content .invoices-list ul li span.invoice-date {
+        display: inline-block;
+        width: 120px; }
+      .page-content .invoices-list ul li ul li {
+        border: none;
+        padding: 0px 0px 0px 50px;
+        margin: 5px 0px 5px 130px;
+        position: relative; }
+        .page-content .invoices-list ul li ul li:before {
+          display: block;
+          content: "";
+          width: 30px;
+          height: 1px;
+          position: absolute;
+          top: 10px;
+          left: 0px;
+          background-color: #ccc; }
+        .page-content .invoices-list ul li ul li:last-child {
+          margin-bottom: 0px; }
+        .page-content .invoices-list ul li ul li span.description {
+          font-weight: 700; }
+        .page-content .invoices-list ul li ul li .more-info {
+          font-size: 0.875rem;
+          margin-top: 5px; }
+    .page-content .invoices-list ul a.download {
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0px;
+      font-weight: 700;
+      color: #CC2377;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 4px 10px;
+      background-color: transparent; }
+      .page-content .invoices-list ul a.download:hover {
+        background-color: #CC2377;
+        color: #fff; }
 
 .page-footer {
   background-color: #000;
@@ -193,4 +255,5 @@ input[type="text"], input[type="email"], input[type="password"] {
   LOGIN PAGE VARIATIONS
 **/
 .login .page-content {
-  text-align: center; }
+  text-align: center;
+  padding: 80px 0px; }
