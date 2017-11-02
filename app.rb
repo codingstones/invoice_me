@@ -13,7 +13,7 @@ def is_authenticated!
 end
 
 get '/login' do
-  erb :login, :locals => {:errors => nil}
+  erb :login, :layout => false, :locals => {:errors => nil}
 end
 
 post '/login' do
@@ -32,7 +32,7 @@ get '/' do
 
   provider_id = session[:current_user].id
   invoices = get_invoices_by_provider.run(provider_id)
-  
+
   erb :index, :locals => {invoices: invoices}
 end
 
