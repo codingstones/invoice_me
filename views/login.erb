@@ -1,90 +1,66 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<div class="page-wrapper login">
+  <header class="page-header">
 
-  <title>Registra tus facturas | Invoice_Me</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <div class="wrapper">
+      <span class="logo">Invoice_Me</span>
+    </div><!-- .wrapper -->
 
-  <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
+  </header>
 
-  <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700|VT323" rel="stylesheet">
+  <section class="page-content">
 
-  <link rel="stylesheet" href="css/main.css" />
+    <%if errors%>
+      <div class="login-errors">
+        <ul>
+          <%errors.each do |error|%>
+          <li><%=error%></li>
+          <%end%>
+        </ul>
+      </div><!-- .login-errors -->
+    <%end%>
 
-</head>
+    <div class="wrapper">
 
-<body>
-  <div class="page-wrapper login">
-    <header class="page-header">
+      <h1>Entra a registrar tus facturas</h1>
 
-      <div class="wrapper">
-        <span class="logo">Invoice_Me</span>
-      </div><!-- .wrapper -->
-
-    </header>
-
-    <section class="page-content">
-
-      <%if errors%>
-        <div class="login-errors">
-          <ul>
-            <%errors.each do |error|%>
-            <li><%=error%></li>
-            <%end%>
-          </ul>
-        </div><!-- .login-errors -->
-      <%end%>
-
-      <div class="wrapper">
-
-        <h1>Entra a registrar tus facturas</h1>
-
-        <form method="POST" class="login-form">
-          <p>
-            <label for="user">Nombre de usuario:</label>
-            <input type="text" name="user" id="user" />
-          </p>
-          <p>
-            <label for="password">Contraseña:</label>
-            <input type="password" name="password" id="password" />
-          </p>
-          <p class="submit">
-            <input type="submit" value="Entrar" class="button primary" />
-          </p>
-        </form>
-      </div><!-- .wrapper -->
-
-    </section>
-
-    <footer class="page-footer">
-      <div class="wrapper">
+      <form method="POST" class="login-form">
         <p>
-          Creado con mucho amor por los Coding Stones.
+          <label for="user">Nombre de usuario:</label>
+          <input type="text" name="user" id="user" />
         </p>
         <p>
-          <a href="http://codingstones.com" target="_blank">
-            <img src="images/stones-white.svg" alt="Logotipo Conding Stones">
-          </a>
+          <label for="password">Contraseña:</label>
+          <input type="password" name="password" id="password" />
         </p>
-        <p class="powered">
-          Powered by
-          <a href="https://cuentica.com" target="_blank">
-            <img src="images/cuentica.svg" class="cuentica" alt="Logotipo Cuéntica">
-          </a>
-          and hosted by
-          <a href="https://github.com" target="_blank">
-            <img src="images/github.svg" class="github" alt="Logotipo GitHub">
-          </a>
+        <p class="submit">
+          <input type="submit" value="Entrar" class="button primary" />
         </p>
-      </div><!-- .wrapper -->
-    </footer>
+      </form>
+    </div><!-- .wrapper -->
 
-  </div><!-- .page-wrapper -->
-</body>
-</html>
+  </section>
+
+  <footer class="page-footer">
+    <div class="wrapper">
+      <p>
+        Creado con mucho amor por los Coding Stones.
+      </p>
+      <p>
+        <a href="http://codingstones.com" target="_blank">
+          <img src="images/stones-white.svg" alt="Logotipo Conding Stones">
+        </a>
+      </p>
+      <p class="powered">
+        Powered by
+        <a href="https://cuentica.com" target="_blank">
+          <img src="images/cuentica.svg" class="cuentica" alt="Logotipo Cuéntica">
+        </a>
+        and hosted by
+        <a href="https://github.com" target="_blank">
+          <img src="images/github.svg" class="github" alt="Logotipo GitHub">
+        </a>
+      </p>
+    </div><!-- .wrapper -->
+  </footer>
+
+</div><!-- .page-wrapper -->
