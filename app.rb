@@ -27,6 +27,11 @@ post '/login' do
   end
 end
 
+get '/logout' do
+  session[:current_user] = nil
+  redirect '/login'
+end
+
 get '/' do
   is_authenticated!
 

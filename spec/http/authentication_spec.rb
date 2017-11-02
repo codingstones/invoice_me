@@ -5,8 +5,9 @@ describe 'Authentication' do
     expect(last_response).to be_ok
   end
 
+  let(:credentials) { {user: '12345678Z', password: 'password'} }
+
   context 'authenticates ok' do
-    let(:credentials) { {user: '12345678Z', password: 'password'} }
     it 'redirects to invoices' do
       VCR.use_cassette("find_a_provider") do
         post '/login', credentials
@@ -39,5 +40,25 @@ describe 'Authentication' do
     get '/'
 
     expect(last_response).to be_redirect
+  end
+
+  context 'sign out' do
+    before(:each) do
+      VCR.use_cassette("find_a_provider") do
+        post '/login', credentials
+      end
+    end
+
+    it 'removes current_user to the session' do
+      get '/logout'
+
+      expect(last_request.env['rack.session'][:current_user]).to be_nil
+    end
+
+    it 'redirects to login' do
+      get '/logout'
+
+      expect(last_response).to be_redirect
+    end
   end
 end
