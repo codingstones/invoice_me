@@ -1,0 +1,75 @@
+@import "normalize.css";
+
+/********************
+ VARIABLES AND COLORS
+*********************/
+$font_family: "Arial", sans-serif;
+
+$font_light: 300;
+$font_normal: 400;
+$font_bold: 600;
+
+$text_color: #000;
+$red: #BB1A28;
+$orange: #CD631F;
+$green: #1BB32C;
+$violet: #CC2377;
+
+
+/******************
+ RESET AND DEFAULTS
+*******************/
+html{
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}//html
+
+textarea{
+  resize: vertical;
+}
+
+*, html, body, input, textarea, button, a, i{
+  box-sizing: border-box;
+  font-family: $font_family;
+}
+iframe{
+  width: 100%;
+  height: auto;
+  border: none;
+}
+body{
+  position: relative;
+  min-height: 100%;
+  font-size: 100%;
+  font-size: 16px;
+  font-family: $font_family;
+  font-weight: $font_normal;
+
+  line-height: 20px;
+  height: 100%;
+  color: $normal_text;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+}
+
+a{
+  text-decoration: none;
+  outline: none;
+  transition: all 0.1s ease-in-out;
+  &:hover{
+    text-decoration: none;
+  }
+}//a
+ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}//ul
+
+.wrapper{
+  width: 1400px;
+  max-width: 92%;
+  margin: 0 auto;
+}//.wrapper
