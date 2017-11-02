@@ -28,3 +28,17 @@ end
 Then(/^is not authenticated$/) do
   expect(page.title).to eq 'Entra a registrar tus facturas'
 end
+
+Given(/^an signed in user$/) do
+  page.reset!
+  visit '/login'
+  within("form") do
+    fill_in 'user', with: "12345678Z"
+    fill_in 'password', with: "password"
+  end
+  click_button 'Entrar'
+end
+
+When(/^signs out$/) do
+  click_link 'Salir'
+end
