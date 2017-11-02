@@ -15,7 +15,7 @@ When(/^trying to authenticate$/) do
 end
 
 Then(/^is authenticated$/) do
-  expect(page.title).to eq 'Tus facturas registradas'
+  expect(page.first(:css, 'h1').text).to eq 'Tus facturas registradas'
 end
 
 Given(/^with wrong user or password$/) do
@@ -26,7 +26,7 @@ Given(/^with wrong user or password$/) do
 end
 
 Then(/^is not authenticated$/) do
-  expect(page.title).to eq 'Entra a registrar tus facturas'
+  expect(page.first(:css, 'h1').text).to eq 'Entra a registrar tus facturas'
 end
 
 Given(/^an signed in user$/) do
