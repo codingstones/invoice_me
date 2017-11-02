@@ -13,7 +13,7 @@ def is_authenticated!
 end
 
 get '/login' do
-  erb :login, :layout => false, :locals => {:errors => nil}
+  erb :login, :locals => {:errors => nil}
 end
 
 post '/login' do
