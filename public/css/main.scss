@@ -127,6 +127,12 @@ input[type="text"], input[type="email"], input[type="password"]{
   padding: 25px 0px;
   text-align: center;
   position: relative;
+  .wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: center;
+  }
   &:before, &:after{
     display: block;
     content: "";
@@ -147,8 +153,41 @@ input[type="text"], input[type="email"], input[type="password"]{
     display: inline-block;
     font-family: $font_logo;
     font-size: to_rem(75);
-    letter-spacing: 1px;
-  }
+    a{
+      display: inline-block;
+      font-family: $font_logo;
+      font-size: to_rem(40);
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+  }//span.logo
+  .page-menu{
+    text-align: right;
+    display: inline-block;
+    ul{
+      margin: 10px 0px 0px 0px;
+      padding: 0;
+      display: inline-block;
+      list-style: none;
+      li{
+        display: inline-block;
+        margin-left: 25px;
+        text-transform: uppercase;
+        font-weight: $font_bold;
+        a{
+          color: #fff;
+          background-color: $violet;
+          text-decoration: none;
+          padding: 4px 10px;
+          &:hover{
+            color: $violet;
+            background-color: #fff;
+          }
+        }//a
+      }//li
+    }//ul
+  }//.page-menu
 }//.page-header
 
 .page-content{
@@ -225,3 +264,7 @@ input[type="text"], input[type="email"], input[type="password"]{
     text-align: center;
   }
 }//.login
+
+.invoices{
+
+}//.invoices

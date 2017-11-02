@@ -1,23 +1,67 @@
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/new">Nueva factura</a></li>
-        <li><a href="/logout">Salir</a></li>
-      </ul>
-    </nav>
+<div class="page-wrapper invoices">
+  <header class="page-header">
 
-    <h1>Tus facturas registradas</h1>
+    <div class="wrapper">
+      <span class="logo"><a href="/">Invoice_Me</a></span>
+      <nav class="page-menu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/new">Nueva factura</a></li>
+          <li><a href="/logout">Salir</a></li>
+        </ul>
+      </nav>
+    </div><!-- .wrapper -->
 
-    <a href="/new">Registra una nueva!</a>
+  </header>
 
-    <ul>
-      <%invoices.each do |invoice|%>
-      <li>
-        <%=invoice.date%> - <%=invoice.document_number%> - Total: <%=invoice.total_amount%>€
-        <% invoice.lines.each do |line|%>
-          <br>
-          <%= line.description%>. Base: <%= line.base%>€. IVA: <%= line.vat%>%. Retención<%= line.retention%>%
-        <%end%>
-      </li>
-      <%end%>
-    </ul>
+  <section class="page-content">
+
+    <div class="wrapper">
+
+      <div class="page-title">
+        <h1>Facturas registradas</h1>
+        <a href="/new" class="button primary">Registra una nueva</a>
+      </div><!-- .page-title -->
+
+      <div class="invoices-list">
+        <ul>
+          <%invoices.each do |invoice|%>
+          <li>
+            <%=invoice.date%> - <%=invoice.document_number%> - Total: <%=invoice.total_amount%>€
+            <% invoice.lines.each do |line|%>
+              <br>
+              <%= line.description%>. Base: <%= line.base%>€. IVA: <%= line.vat%>%. Retención<%= line.retention%>%
+            <%end%>
+          </li>
+          <%end%>
+        </ul>
+      </div><!-- .invoices-list -->
+
+    </div><!-- .wrapper -->
+
+  </section>
+
+  <footer class="page-footer">
+    <div class="wrapper">
+      <p>
+        Creado con mucho amor por los Coding Stones.
+      </p>
+      <p>
+        <a href="http://codingstones.com" target="_blank">
+          <img src="images/stones-white.svg" alt="Logotipo Conding Stones">
+        </a>
+      </p>
+      <p class="powered">
+        Powered by
+        <a href="https://cuentica.com" target="_blank">
+          <img src="images/cuentica.svg" class="cuentica" alt="Logotipo Cuéntica">
+        </a>
+        and hosted by
+        <a href="https://github.com" target="_blank">
+          <img src="images/github.svg" class="github" alt="Logotipo GitHub">
+        </a>
+      </p>
+    </div><!-- .wrapper -->
+  </footer>
+
+</div><!-- .page-wrapper -->
