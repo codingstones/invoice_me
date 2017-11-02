@@ -110,7 +110,7 @@ label{
   margin-bottom: 5px;
   cursor: pointer;
 }
-input[type="text"], input[type="email"], input[type="password"]{
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="date"]{
   width: 100%;
   padding: 15px 20px;
   font-family: $font_family;
@@ -287,6 +287,66 @@ input[type="text"], input[type="email"], input[type="password"]{
       }
     }//ul
   }//.invoices-list
+  .invoice-metadata{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+    p{
+      display: inline-block;
+      width: 30%;
+      input[type="file"]{
+        margin-top: 12px;
+      }
+    }
+  }//.invoice-metadata
+  ul.invoice-lines{
+    li{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      align-content: flex-start;
+      flex-wrap: nowrap;
+      p{
+        display: inline-block;
+        width: 13%;
+        &.description{
+          width: 50%;
+        }
+        &.delete{
+          width: 5%;
+          padding-top: 40px;
+          text-align: right;
+          a{
+            font-weight: $font_bold;
+            font-size: to_rem(14);
+            text-transform: uppercase;
+            text-align: center;
+            color: $violet;
+            text-decoration: none;
+            &:hover{
+              text-decoration: underline;
+            }
+          }
+        }
+      }//p
+    }//li
+  }//ul.invoice-lines
+  p.add-new{
+    a{
+      display: inline-block;
+      text-transform: uppercase;
+      font-weight: $font_bold;
+      color: $violet;
+      text-decoration: none;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+  }//p.add-new
+  p.submit{
+    margin-top: 60px;
+  }
 }//.page-content
 
 .page-footer{

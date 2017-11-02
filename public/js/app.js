@@ -1,9 +1,9 @@
 const LINE_TEMPLATE = `
-  <label>Descripción<input type="text" name="description[]"></label>
-  <label>Base<input type="number" name="base[]" ></label>
-  <label>IVA<input type="text" name="vat[]" value="21"></label>
-  <label>Retención<input type="text" name="retention[]" value="15"></label>
-  <a href="">Eliminar</a>
+  <p class="description"><label>Descripción:</label><input type="text" name="description[]"></p>
+  <p><label>Base:</label><input type="number" name="base[]"></p>
+  <p><label>IVA:</label><input type="text" name="vat[]" value="21"></p>
+  <p><label>Retención:</label><input type="text" name="retention[]" value="15"></p>
+  <p class="delete"><a href="">Eliminar</a></p>
 `;
 
 function addNewLine(){

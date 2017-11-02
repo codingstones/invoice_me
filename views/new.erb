@@ -1,32 +1,102 @@
+<div class="page-wrapper invoice-new">
+  <header class="page-header">
 
-    <h1>Registra tus facturas</h1>
+    <div class="wrapper">
+      <%= erb :_header_navigation %>
+    </div><!-- .wrapper -->
 
-    <%if errors%>
-      <ul>
-        <%errors.each do |error|%>
-        <li><%=error[0]%>: <%=error[1]%></li>
+  </header>
+
+  <section class="page-content">
+
+    <div class="wrapper">
+
+      <div class="page-title">
+        <h1>Registra una nueva factura</h1>
+      </div><!-- .page-title -->
+
+      <div class="invoice-new">
+        <%if errors%>
+          <div class="invoice-errors">
+            <ul>
+              <%errors.each do |error|%>
+              <li><%=error[0]%>: <%=error[1]%></li>
+              <%end%>
+            </ul>
+          </div><!-- .invoice-errors -->
         <%end%>
-      </ul>
-    <%end%>
 
-    <form method="POST" enctype="multipart/form-data">
-      <label>Número de factura<input type="text" name="document_number"/></label>
-      <br>
-      <label>Fecha<input type="date" name="date"/></label>
-      <br>
-      <label>Adjunta tu factura<input type="file" name="file"/></label>
-      <br>
-      <h2>Líneas de factura</h2>
-      <ul id="lines">
-        <li>
-          <label>Descripción<input type="text" name="description[]"></label>
-          <label>Base<input type="number" name="base[]"></label>
-          <label>IVA<input type="text" name="vat[]" value="21"></label>
-          <label>Retención<input type="text" name="retention[]" value="15"></label>
-        </li>
-      </ul>
-      <br><br>
-      <a href="" id="adder">Añadir nueva línea</a>
-      <br><br><br>
-      <input type="submit" value="Registrar factura">
-    </form>
+        <form method="POST" enctype="multipart/form-data">
+          <div class="invoice-metadata">
+            <p>
+              <label for="document_number">Número de factura:</label>
+              <input type="text" name="document_number" id="document_number" />
+            </p>
+            <p>
+              <label for="date">Fecha de factura:</label>
+              <input type="date" name="date" id="date" />
+            </p>
+            <p>
+              <label for="file">Adjunta tu factura:</label><br />
+              <input type="file" name="file" id="file" />
+            </p>
+          </div>
+          <h2>Líneas de la factura:</h2>
+          <ul id="lines" class="invoice-lines">
+            <li>
+              <p class="description">
+                <label>Descripción:</label>
+                <input type="text" name="description[]" />
+              </p>
+              <p>
+                <label>Base imponible:</label>
+                <input type="number" name="base[]" />
+              </p>
+              <p>
+                <label>IVA:</label>
+                <input type="text" name="vat[]" value="21" />
+              </p>
+              <p>
+                <label>Retención:</label>
+                <input type="text" name="retention[]" value="15" />
+              </p>
+              <p class="delete"></p>
+            </li>
+          </ul>
+          <p class="add-new">
+            <a href="" id="adder">Añadir nueva línea</a>
+          </p>
+          <p class="submit">
+            <input type="submit" value="Registrar factura" class="button primary" />
+          </p>
+        </form>
+      </div><!-- .invoice-new -->
+
+    </div><!-- .wrapper -->
+
+  </section>
+
+  <footer class="page-footer">
+    <div class="wrapper">
+      <p>
+        Creado con mucho amor por los Coding Stones.
+      </p>
+      <p>
+        <a href="http://codingstones.com" target="_blank">
+          <img src="images/stones-white.svg" alt="Logotipo Conding Stones">
+        </a>
+      </p>
+      <p class="powered">
+        Powered by
+        <a href="https://cuentica.com" target="_blank">
+          <img src="images/cuentica.svg" class="cuentica" alt="Logotipo Cuéntica">
+        </a>
+        and hosted by
+        <a href="https://github.com" target="_blank">
+          <img src="images/github.svg" class="github" alt="Logotipo GitHub">
+        </a>
+      </p>
+    </div><!-- .wrapper -->
+  </footer>
+
+</div><!-- .page-wrapper -->

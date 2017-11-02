@@ -75,7 +75,7 @@ label {
   margin-bottom: 5px;
   cursor: pointer; }
 
-input[type="text"], input[type="email"], input[type="password"] {
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="date"] {
   width: 100%;
   padding: 15px 20px;
   font-family: "Inconsolata", sans-serif;
@@ -214,6 +214,50 @@ input[type="text"], input[type="email"], input[type="password"] {
       .page-content .invoices-list ul a.download:hover {
         background-color: #CC2377;
         color: #fff; }
+  .page-content .invoice-metadata {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start; }
+    .page-content .invoice-metadata p {
+      display: inline-block;
+      width: 30%; }
+      .page-content .invoice-metadata p input[type="file"] {
+        margin-top: 12px; }
+  .page-content ul.invoice-lines li {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: nowrap; }
+    .page-content ul.invoice-lines li p {
+      display: inline-block;
+      width: 13%; }
+      .page-content ul.invoice-lines li p.description {
+        width: 50%; }
+      .page-content ul.invoice-lines li p.delete {
+        width: 5%;
+        padding-top: 40px;
+        text-align: right; }
+        .page-content ul.invoice-lines li p.delete a {
+          font-weight: 700;
+          font-size: 0.875rem;
+          text-transform: uppercase;
+          text-align: center;
+          color: #CC2377;
+          text-decoration: none; }
+          .page-content ul.invoice-lines li p.delete a:hover {
+            text-decoration: underline; }
+  .page-content p.add-new a {
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #CC2377;
+    text-decoration: none; }
+    .page-content p.add-new a:hover {
+      text-decoration: underline; }
+  .page-content p.submit {
+    margin-top: 60px; }
 
 .page-footer {
   background-color: #000;
