@@ -194,8 +194,6 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
           background-color: #ccc; }
         .page-content .invoices-list ul li ul li:last-child {
           margin-bottom: 0px; }
-        .page-content .invoices-list ul li ul li span.description {
-          font-weight: 700; }
         .page-content .invoices-list ul li ul li .more-info {
           font-size: 0.875rem;
           margin-top: 5px; }
@@ -298,6 +296,12 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
 /**
   LOGIN PAGE VARIATIONS
 **/
+.login .page-header {
+  text-align: center;
+  padding-bottom: 40px; }
+  .login .page-header .wrapper {
+    justify-content: center; }
+
 .login .page-content {
   text-align: center;
   padding: 80px 0px; }

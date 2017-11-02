@@ -259,7 +259,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
               margin-bottom: 0px;
             }
             span.description{
-              font-weight: $font_bold;
+              //font-weight: $font_bold;
             }
             .more-info{
               font-size: to_rem(14);
@@ -401,6 +401,13 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
 **/
 
 .login{
+  .page-header{
+    text-align: center;
+    padding-bottom: 40px;
+    .wrapper{
+      justify-content: center;
+    }
+  }
   .page-content{
     text-align: center;
     padding: 80px 0px;
