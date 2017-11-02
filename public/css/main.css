@@ -1,0 +1,164 @@
+@import url(normalize.css);
+/*******************
+FUNCTIONS AND MIXINS
+********************/
+/********************
+ VARIABLES AND COLORS
+*********************/
+/******************
+ RESET AND DEFAULTS
+*******************/
+html {
+  margin: 0;
+  padding: 0;
+  background-color: #fff; }
+
+textarea {
+  resize: vertical; }
+
+*, html, body, input, textarea, button, a, i {
+  box-sizing: border-box;
+  font-family: "Inconsolata", sans-serif; }
+
+body {
+  position: relative;
+  min-height: 100%;
+  font-size: 100%;
+  font-size: 16px;
+  font-family: "Inconsolata", sans-serif;
+  font-weight: 400;
+  line-height: 20px;
+  height: 100%;
+  color: #000;
+  padding: 0;
+  margin: 0;
+  background-color: #fff; }
+
+a {
+  text-decoration: none;
+  outline: none;
+  transition: all 0.1s ease-in-out; }
+  a:hover {
+    text-decoration: none; }
+
+a.button.primary, input.button.primary, button.button.primary {
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  border-radius: 30px;
+  letter-spacing: 2px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  background-color: #CC2377;
+  padding: 18px 100px 16px 100px;
+  border: 2px solid transparent;
+  cursor: pointer; }
+  a.button.primary:hover, input.button.primary:hover, button.button.primary:hover {
+    color: #CC2377;
+    background-color: #fff;
+    border-color: #CC2377; }
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.wrapper {
+  width: 1200px;
+  max-width: 92%;
+  margin: 0 auto; }
+
+label {
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 5px;
+  cursor: pointer; }
+
+input[type="text"], input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 15px 20px;
+  font-family: "Inconsolata", sans-serif;
+  border: 1px solid #888;
+  outline: none; }
+
+.page-header {
+  background-color: #000;
+  color: #fff;
+  padding: 25px 0px;
+  text-align: center;
+  position: relative; }
+  .page-header:before, .page-header:after {
+    display: block;
+    content: "";
+    width: 50%;
+    height: 5px;
+    position: absolute;
+    bottom: 0px; }
+  .page-header:before {
+    left: 0px;
+    background: linear-gradient(90deg, #BB1A28 0%, #BB1A28 50%, #1BB32C 50%, #1BB32C 100%); }
+  .page-header:after {
+    right: 0px;
+    background: linear-gradient(90deg, #CD631F 0%, #CD631F 50%, #CC2377 50%, #CC2377 100%); }
+  .page-header span.logo {
+    display: inline-block;
+    font-family: "VT323", monospace;
+    font-size: 4.6875rem;
+    letter-spacing: 1px; }
+
+.page-content {
+  padding: 80px 0px; }
+  .page-content h1 {
+    margin: 0px 0px 40px 0px;
+    padding: 0;
+    font-size: 2.5rem;
+    font-weight: 700; }
+  .page-content .login-form {
+    width: 50%;
+    margin: 0 auto;
+    text-align: left; }
+    .page-content .login-form p.submit {
+      margin-top: 20px; }
+
+.page-footer {
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 50px 0px;
+  position: relative; }
+  .page-footer:before, .page-footer:after {
+    display: block;
+    content: "";
+    width: 50%;
+    height: 5px;
+    position: absolute;
+    top: 0px; }
+  .page-footer:before {
+    left: 0px;
+    background: linear-gradient(90deg, #CC2377 0%, #CC2377 50%, #1BB32C 50%, #1BB32C 100%); }
+  .page-footer:after {
+    right: 0px;
+    background: linear-gradient(90deg, #CD631F 0%, #CD631F 50%, #BB1A28 50%, #BB1A28 100%); }
+  .page-footer p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-transform: uppercase; }
+    .page-footer p img {
+      max-width: 150px;
+      margin: 0px 25px; }
+      .page-footer p img.github {
+        max-width: 100px; }
+  .page-footer p.powered {
+    font-size: 1rem; }
+
+/**
+  LOGIN PAGE VARIATIONS
+**/
+.login .page-content {
+  text-align: center; }

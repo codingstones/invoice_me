@@ -1,15 +1,28 @@
 @import "normalize.css";
 
+
+/*******************
+FUNCTIONS AND MIXINS
+********************/
+$normal_font_size: 16;
+
+@function to_rem($size) {
+  $remSize: $size / $normal_font_size;
+  @return #{$remSize}rem;
+}
+
 /********************
  VARIABLES AND COLORS
 *********************/
-$font_family: "Arial", sans-serif;
+$font_family: "Inconsolata", sans-serif;
+$font_logo: "VT323", monospace;
 
 $font_light: 300;
 $font_normal: 400;
-$font_bold: 600;
+$font_bold: 700;
 
 $text_color: #000;
+$grey: #888;
 $red: #BB1A28;
 $orange: #CD631F;
 $green: #1BB32C;
@@ -33,11 +46,6 @@ textarea{
   box-sizing: border-box;
   font-family: $font_family;
 }
-iframe{
-  width: 100%;
-  height: auto;
-  border: none;
-}
 body{
   position: relative;
   min-height: 100%;
@@ -48,7 +56,7 @@ body{
 
   line-height: 20px;
   height: 100%;
-  color: $normal_text;
+  color: $text_color;
   padding: 0;
   margin: 0;
   background-color: #fff;
@@ -62,6 +70,27 @@ a{
     text-decoration: none;
   }
 }//a
+
+a.button.primary, input.button.primary, button.button.primary{
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  border-radius: 30px;
+  letter-spacing: 2px;
+  font-size: to_rem(20);
+  font-weight: $font_bold;
+  background-color: $violet;
+  padding: 18px 100px 16px 100px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  &:hover{
+    color: $violet;
+    background-color: #fff;
+    border-color: $violet;
+  }
+}//a.button.primary
+
 ul{
   margin: 0;
   padding: 0;
@@ -69,7 +98,130 @@ ul{
 }//ul
 
 .wrapper{
-  width: 1400px;
+  width: 1200px;
   max-width: 92%;
   margin: 0 auto;
 }//.wrapper
+
+label{
+  font-weight: $font_bold;
+  display: inline-block;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+input[type="text"], input[type="email"], input[type="password"]{
+  width: 100%;
+  padding: 15px 20px;
+  font-family: $font_family;
+  border: 1px solid $grey;
+  outline: none;
+}
+
+.page-wrapper{
+
+}//.page-wrapper
+
+.page-header{
+  background-color: $text_color;
+  color: #fff;
+  padding: 25px 0px;
+  text-align: center;
+  position: relative;
+  &:before, &:after{
+    display: block;
+    content: "";
+    width: 50%;
+    height: 5px;
+    position: absolute;
+    bottom: 0px;
+  }
+  &:before{
+    left: 0px;
+    background: linear-gradient(90deg, $red 0%, $red 50%, $green 50%, $green 100%);
+  }
+  &:after{
+    right: 0px;
+    background: linear-gradient(90deg, $orange 0%, $orange 50%, $violet 50%, $violet 100%);
+  }
+  span.logo{
+    display: inline-block;
+    font-family: $font_logo;
+    font-size: to_rem(75);
+    letter-spacing: 1px;
+  }
+}//.page-header
+
+.page-content{
+  padding: 80px 0px;
+  h1{
+    margin: 0px 0px 40px 0px;
+    padding: 0;
+    font-size: to_rem(40);
+    font-weight: $font_bold;
+  }
+  .login-form{
+    width: 50%;
+    margin: 0 auto;
+    text-align: left;
+    p.submit{
+      margin-top: 20px;
+    }
+  }
+}//.page-content
+
+.page-footer{
+  background-color: $text_color;
+  color: #fff;
+  text-align: center;
+  padding: 50px 0px;
+  position: relative;
+  &:before, &:after{
+    display: block;
+    content: "";
+    width: 50%;
+    height: 5px;
+    position: absolute;
+    top: 0px;
+  }
+  &:before{
+    left: 0px;
+    background: linear-gradient(90deg, $violet 0%, $violet 50%, $green 50%, $green 100%);
+  }
+  &:after{
+    right: 0px;
+    background: linear-gradient(90deg, $orange 0%, $orange 50%, $red 50%, $red 100%);
+  }
+  p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    font-size: to_rem(20);
+    text-transform: uppercase;
+    font-weight: $font_bold;
+    text-transform: uppercase;
+    img{
+      max-width: 150px;
+      margin: 0px 25px;
+      &.cuentica{
+
+      }
+      &.github{
+        max-width: 100px;
+      }
+    }
+  }//p
+  p.powered{
+    font-size: to_rem(16);
+  }
+}//.page-footer
+
+/**
+  LOGIN PAGE VARIATIONS
+**/
+
+.login{
+  .page-content{
+    text-align: center;
+  }
+}//.login
