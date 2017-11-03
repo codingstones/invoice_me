@@ -9,24 +9,24 @@
 
   <section class="page-content">
 
-    <%if errors%>
-      <div class="login-errors">
-        <ul>
-          <%errors.each do |error|%>
-          <li><%=error%></li>
-          <%end%>
-        </ul>
-      </div><!-- .login-errors -->
-    <%end%>
-
     <div class="wrapper">
 
       <h1>Entra a registrar tus facturas</h1>
 
       <form method="POST" class="login-form">
+        <%if errors%>
+          <div class="errors">
+            <ul>
+              <%errors.each do |error|%>
+              <li><%=error%></li>
+              <%end%>
+            </ul>
+          </div><!-- .login-errors -->
+        <%end%>
+
         <p>
           <label for="user">Nombre de usuario:</label>
-          <input type="text" name="user" id="user" />
+          <input type="text" name="user" id="user" value="<%=params[:user]%>" />
         </p>
         <p>
           <label for="password">Contraseña:</label>
