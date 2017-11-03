@@ -9,7 +9,7 @@ module InvoiceMe
       found = providers.find do |provider|
         provider["cif"] == cif
       end
-      deserialize(found)
+      deserialize(found) if found
     end
 
     private
