@@ -11,13 +11,13 @@ module InvoiceMe
 
     def get(endpoint, params={})
       url = URI(endpoint)
+      url.query = URI.encode_www_form(params)
 
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
       request = Net::HTTP::Get.new(url)
-      request.set_form_data(params)
       request['X-AUTH-TOKEN'] = ENV['AUTH_TOKEN']
 
       response = http.request(request)

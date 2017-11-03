@@ -1,7 +1,7 @@
 describe 'Invoices' do
   before(:each) do
     get '/new', {}, { 'rack.session' => {
-      current_user: InvoiceMe::Provider.new(id: "12345678Z") }
+      current_user: InvoiceMe::Provider.new(id: 348489, cif: "12345678Z") }
     }
   end
 
