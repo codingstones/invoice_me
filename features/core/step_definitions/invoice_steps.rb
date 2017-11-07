@@ -35,3 +35,15 @@ end
 Given(/^the invoice date is empty$/) do
   @invoice_data.delete(:date)
 end
+
+When(/^get all provider invoices$/) do
+  get_invoices_by_provider_action = InvoiceMe::Factory.new.get_invoices_by_provider_action
+
+  VCR.use_cassette("find_expenses") do
+    @invoices_by_provider = get_invoices_by_provider_action.run("348489")
+  end
+end
+
+Then(/^invoices are retrieved$/) do
+  expect(@invoices_by_provider).not_to be_nil
+end
