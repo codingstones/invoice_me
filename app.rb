@@ -77,7 +77,7 @@ post '/new' do
 
   begin
     invoice = add_invoice_action.run(provider_id, params)
-    redirect '/new'
+    redirect '/'
   rescue InvoiceMe::InvalidInvoiceError => e
     status 422
     erb :new, :locals => {:errors => e.messages}
