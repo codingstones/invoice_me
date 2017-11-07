@@ -1,11 +1,7 @@
+require_relative "../page_objects/pages"
 Given(/^a provider identified$/) do
-  page.reset!
-  visit '/login'
-  within("form") do
-    fill_in 'user', with: "12345678Z"
-    fill_in 'password', with: "password"
-  end
-  click_button 'Entrar'
+  login_page = PageObjects::LoginPage.new(self)
+  login_page.authenticate("12345678Z", "password")
 end
 
 Given(/^all invoice valid information$/) do
@@ -15,20 +11,12 @@ Given(/^all invoice valid information$/) do
 end
 
 When(/^adds an invoice$/) do
-  visit '/new'
-  within("form") do
-    fill_in 'document_number', with: @invoice_data[:document_number]
-    fill_in 'date', with: @invoice_data[:date]
-    fill_in 'description[]', with: @invoice_data[:lines].first[:description]
-    fill_in 'base[]', with: @invoice_data[:lines].first[:base]
-    fill_in 'vat[]', with: @invoice_data[:lines].first[:vat]
-    fill_in 'retention[]', with: @invoice_data[:lines].first[:retention]
-  end
-  click_button 'Registrar factura'
+  @register_invoice_page = PageObjects::RegisterInvoicePage.new(self)
+  @register_invoice_page.register(@invoice_data)
 end
 
 Then(/^the invoice is added$/) do
-  expect(page.first(:css, 'h1').text).to eq 'Facturas registradas'
+  expect(@register_invoice_page.errors?).to be false
 end
 
 Given(/^the invoice number is empty$/) do
@@ -36,7 +24,7 @@ Given(/^the invoice number is empty$/) do
 end
 
 Then(/^the invoice is not added$/) do
-  expect(page).to have_css("div.errors")
+  expect(@register_invoice_page.errors?).to be true
 end
 
 Given(/^the invoice date is empty$/) do
@@ -44,9 +32,9 @@ Given(/^the invoice date is empty$/) do
 end
 
 When(/^get all provider invoices$/) do
-  visit '/'
+  @provider_invoices_page = PageObjects::ProviderInvoicesPage.new(self)
 end
 
 Then(/^invoices are retrieved$/) do
-  expect(page).to have_css(".invoices-list li")
+  expect(@provider_invoices_page.has_invoices?).to be true
 end

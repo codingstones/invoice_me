@@ -1,44 +1,34 @@
 Given(/^an existing user$/) do
-  page.reset!
-  visit '/login'
+  @login_page = PageObjects::LoginPage.new(self)
 end
 
 Given(/^with right user and password$/) do
-  within("form") do
-    fill_in 'user', with: "12345678Z"
-    fill_in 'password', with: "password"
-  end
+  @user = "12345678Z"
+  @password = "password"
 end
 
 When(/^trying to authenticate$/) do
-  click_button 'Entrar'
+  @after_authenticate_page = @login_page.authenticate(@user, @password)
 end
 
 Then(/^is authenticated$/) do
-  expect(page.first(:css, 'h1').text).to eq 'Facturas registradas'
+  expect(@after_authenticate_page.logged_in?).to be true
 end
 
 Given(/^with wrong user or password$/) do
-  within("form") do
-    fill_in 'user', with: ""
-    fill_in 'password', with: "password"
-  end
+  @user = ""
+  @password = "password"
 end
 
 Then(/^is not authenticated$/) do
-  expect(page.first(:css, 'h1').text).to eq 'Entra a registrar tus facturas'
+  expect(@after_authenticate_page.logged_out?).to be true
 end
 
 Given(/^an signed in user$/) do
-  page.reset!
-  visit '/login'
-  within("form") do
-    fill_in 'user', with: "12345678Z"
-    fill_in 'password', with: "password"
-  end
-  click_button 'Entrar'
+  login_page = PageObjects::LoginPage.new(self)
+  @after_authenticate_page = login_page.authenticate("12345678Z", "password")
 end
 
 When(/^signs out$/) do
-  click_link 'Salir'
+  @after_authenticate_page.logout
 end
