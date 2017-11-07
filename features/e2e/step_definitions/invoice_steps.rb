@@ -42,3 +42,11 @@ end
 Given(/^the invoice date is empty$/) do
   @invoice_data[:date] = ""
 end
+
+When(/^get all provider invoices$/) do
+  visit '/'
+end
+
+Then(/^invoices are retrieved$/) do
+  expect(page).to have_css(".invoices-list li")
+end
