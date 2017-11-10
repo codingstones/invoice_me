@@ -1,7 +1,7 @@
 Feature: Sign In User
   In order to enter to the platform
   As a provider
-  I want to autenticate
+  I want to authenticate
 
   Scenario: the credentials are ok
     Given an existing user
