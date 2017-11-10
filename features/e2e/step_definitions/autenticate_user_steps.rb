@@ -30,5 +30,5 @@ Given(/^an signed in user$/) do
 end
 
 When(/^signs out$/) do
-  @after_authenticate_page.logout
+  @after_authenticate_page = @after_authenticate_page.logout
 end

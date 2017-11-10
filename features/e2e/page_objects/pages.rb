@@ -46,6 +46,7 @@ module PageObjects
 
     def logout
       @context.click_link 'Salir'
+      LoginPage.new(@context)
     end
   end
 
