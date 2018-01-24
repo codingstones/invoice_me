@@ -5,7 +5,7 @@ Given(/^a provider identified$/) do
 end
 
 Given(/^all invoice valid information$/) do
-  @invoice_data = { date: "2023-05-11",
+  @invoice_data = { date: "2020-05-11",
     lines: [{description: 'a expense', base: 100, vat: 21, retention: 15}],
     document_number: '17/2017'}
 end
@@ -28,7 +28,7 @@ Then(/^the invoice is not added$/) do
 end
 
 Given(/^the invoice date is empty$/) do
-  @invoice_data[:date] = ""
+  @invoice_data[:date] = nil
 end
 
 When(/^get all provider invoices$/) do

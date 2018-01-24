@@ -70,7 +70,7 @@ module PageObjects
     def register(args)
       @context.within("form") do
         @context.fill_in 'document_number', with: args[:document_number]
-        @context.fill_in 'date', with: args[:date]
+        @context.fill_in 'date', with: args[:date] if args[:date]
         @context.fill_in 'description[]', with: args[:lines].first[:description]
         @context.fill_in 'base[]', with: args[:lines].first[:base]
         @context.fill_in 'vat[]', with: args[:lines].first[:vat]

@@ -10,4 +10,5 @@ group :development do
   gem 'rack-test'
   gem 'cucumber'
   gem 'capybara'
+  gem 'selenium-webdriver'
 end
