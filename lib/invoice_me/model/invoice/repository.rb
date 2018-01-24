@@ -58,6 +58,7 @@ module InvoiceMe
         expense_line = line.to_h
         expense_line[:investment] = false
         expense_line[:imputation] = 100
+        expense_line[:expense_type] = '6230005'
         expense_lines.push(expense_line)
       end
       expense_lines
