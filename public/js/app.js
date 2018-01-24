@@ -1,7 +1,7 @@
 const line = (vat, retention, hasDeleteLine) => {
   return `
   <p class="description"><label>Descripción:</label><input type="text" name="description[]"></p>
-  <p><label>Base:</label><input type="number" name="base[]"></p>
+  <p><label>Base:</label><input type="number" name="base[]" step="any"></p>
   <p><label>IVA:</label><input type="text" name="vat[]" value="${vat}"></p>
   <p><label>Retención:</label><input type="text" name="retention[]" value="${retention}"></p>
   ${deleteLine(hasDeleteLine)}`;
