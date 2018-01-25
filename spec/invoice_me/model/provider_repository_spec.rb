@@ -1,18 +1,16 @@
 describe "Prodiver Repository" do
   let(:a_cif) {"12345678Z"}
-  let(:a_cuentica_provider) { {"cif"=> a_cif} }
-  let(:found_provider) { InvoiceMe::Provider.new(cif: a_cif) }
 
   before(:each) do
-    cuentica_client = instance_double(InvoiceMe::CuenticaClient)
-    @provider_repository = InvoiceMe::ProviderRepository.new(cuentica_client)
-
-    allow(cuentica_client).to receive(:get_providers).and_return([a_cuentica_provider])
+    @provider_repository = InvoiceMe::ProviderRepository.new(InvoiceMe::CuenticaClient.new)
   end
 
   it "find a provider" do
-    pepito_perez = @provider_repository.get(a_cif)
+    VCR.use_cassette("find_a_provider") do
+      pepito_perez = @provider_repository.get(a_cif)
 
-    expect(pepito_perez).to eq found_provider
+      expect(pepito_perez).not_to be_nil
+      expect(pepito_perez.cif).to eq a_cif
+    end
   end
 end
