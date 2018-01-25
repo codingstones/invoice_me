@@ -12,7 +12,7 @@ module InvoiceMe
     end
 
     def find_by_provider(provider_id)
-      entries = @cuentica_client.get_expenses(provider: provider_id)
+      entries = @cuentica_client.get_expenses(provider: provider_id, sort: 'date:desc')
       entries.map { |entry|  deserialize(entry)}
     end
 
