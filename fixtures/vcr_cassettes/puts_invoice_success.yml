@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.cuentica.com/expense
+    body:
+      encoding: UTF-8
+      string: '{"document_type":"invoice","draft":false,"document_number":"foo","date":"2017-07-05","provider":348489,"expense_lines":[{"description":"a
+        expense","base":1000,"vat":21,"retention":15,"expense_type":"6230005","investment":false,"imputation":100}],"payments":[{"date":"2017-07-05","amount":1060,"payment_method":"wire_transfer","paid":false,"origin_account":37207}],"attachment":null}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.cuentica.com
+      X-Auth-Token:
+      - MGYO_Mvtupqz7zOQ5GtrItvLNpccC83muYXQMnvjzAjStB.p89FLn4--F0UCE55HPCyM6Wm8f5SMUzhq
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Vary:
+      - Accept-Encoding,Origin
+      X-Ratelimit-Limit:
+      - '1'
+      X-Ratelimit-Reset:
+      - '1516908000'
+      X-Ratelimit-Remaining:
+      - '749'
+      Date:
+      - Thu, 25 Jan 2018 19:15:41 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '536'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":952310,"date":"2017-07-05","draft":false,"provider":{"id":348489,"cif":"12345678Z","tradename":"Pepito
+        perez","business_type":"company","business_name":"Pepito perez","address":"rue
+        del percebe 13","postal_code":"50001","town":"Zaragoza","region":"Zaragoza","country_code":"ES","phone":"","email":"","web":"","fax":"","personal_comment":"password","default_expense_type":"600","default_retention":0},"document_type":"invoice","document_number":"foo","annotations":"","has_attachment":false,"expense_details":{"base":1000,"vat":210,"retention":150,"surcharge":0,"total_expense":1060,"paid":0,"left":1060},"expense_lines":[{"id":1226224,"draft":false,"investment":false,"description":"a
+        expense","base":1000,"vat":21,"vat_amount":210,"surcharge":0,"surcharge_amount":0,"retention":15,"imputation":100,"expense_type":"6230005"}],"payments":[{"id":2527465,"date":"2017-07-05","expected_date":"2017-07-05","amount":1060,"payment_method":"wire_transfer","origin_account":37207,"origin_account_name":"Contado","origin_account_number":"Caja
+        (dinero en efectivo)"}]}'
+    http_version: 
+  recorded_at: Thu, 25 Jan 2018 19:15:41 GMT
+recorded_with: VCR 3.0.3

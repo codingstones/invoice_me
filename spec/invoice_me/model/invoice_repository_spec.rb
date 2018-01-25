@@ -7,25 +7,21 @@ describe "Invoice Repository" do
     {description: "a expense", base:1000, vat:21, retention:15}
   }
 
-  let(:an_invoice) {
-    InvoiceMe::Invoice.new(document_number: a_document_number,
-    lines:[a_line])
-  }
-
-  let(:a_cuentica_error_response) do
-    {"message"=>"A server error occurred, please try again later"}
-  end
-
   before(:each) do
-    @cuentica_client = instance_double(InvoiceMe::CuenticaClient)
-    @invoice_repository = InvoiceMe::InvoiceRepository.new(@cuentica_client)
+    @invoice_repository = InvoiceMe::InvoiceRepository.new(InvoiceMe::CuenticaClient.new)
   end
 
   context "puts an invoice" do
     context "with success" do
       before(:each) do
-        @invoice_repository = InvoiceMe::InvoiceRepository.new(InvoiceMe::CuenticaClient.new)
-        VCR.use_cassette("add_invoice") do
+        an_invoice = InvoiceMe::Invoice.new(
+          provider_id: a_provider_id,
+          document_number: a_document_number,
+          date: a_date,
+          lines:[a_line]
+        )
+
+        VCR.use_cassette("puts_invoice_success") do
           @new_invoice = @invoice_repository.put(an_invoice)
         end
       end
@@ -33,15 +29,32 @@ describe "Invoice Repository" do
       it "is stored" do
         expect(@new_invoice.id).not_to be_nil
       end
+
+      it "has all their attributes" do
+         expect(@new_invoice.document_number).to eq a_document_number
+         expect(@new_invoice.date).to eq a_date
+         expect(@new_invoice.provider_id).to eq a_provider_id
+
+         line = @new_invoice.lines.first
+         expect(line.description).to eq a_line[:description]
+         expect(line.base).to eq a_line[:base]
+         expect(line.vat).to eq a_line[:vat]
+         expect(line.retention).to eq a_line[:retention]
+         expect(@new_invoice.id).not_to be_nil
+      end
     end
 
-    context "with error" do
-      before(:each) do
-        allow(@cuentica_client).to receive(:register_expense).with(an_instance_of(Hash)).and_return(a_cuentica_error_response)
-      end
-
+    context "with some external error" do
       it "is not stored" do
-        expect{@new_invoice = @invoice_repository.put(an_invoice)}.to raise_error(InvoiceMe::InvalidInvoiceError)
+        an_invoice = InvoiceMe::Invoice.new(
+          document_number: a_document_number,
+          date: a_date,
+          lines:[a_line]
+        )
+
+        VCR.use_cassette("puts_invoice_error") do
+          expect{@new_invoice = @invoice_repository.put(an_invoice)}.to raise_error(InvoiceMe::InvalidInvoiceError)
+        end
       end
     end
   end

@@ -1,0 +1,47 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.cuentica.com/expense
+    body:
+      encoding: UTF-8
+      string: '{"document_type":"invoice","draft":false,"document_number":"foo","date":"2017-07-05","provider":null,"expense_lines":[{"description":"a
+        expense","base":1000,"vat":21,"retention":15,"expense_type":"6230005","investment":false,"imputation":100}],"payments":[{"date":"2017-07-05","amount":1060,"payment_method":"wire_transfer","paid":false,"origin_account":37207}],"attachment":null}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.cuentica.com
+      X-Auth-Token:
+      - MGYO_Mvtupqz7zOQ5GtrItvLNpccC83muYXQMnvjzAjStB.p89FLn4--F0UCE55HPCyM6Wm8f5SMUzhq
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Vary:
+      - Accept-Encoding,Origin
+      X-Ratelimit-Limit:
+      - '2'
+      X-Ratelimit-Reset:
+      - '1516908000'
+      X-Ratelimit-Remaining:
+      - '748'
+      Date:
+      - Thu, 25 Jan 2018 19:19:34 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '60'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"message":"Invalid request body"}'
+    http_version: 
+  recorded_at: Thu, 25 Jan 2018 19:19:34 GMT
+recorded_with: VCR 3.0.3
