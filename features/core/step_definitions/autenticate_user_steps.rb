@@ -9,9 +9,7 @@ end
 When(/^trying to authenticate$/) do
   authenticate_a_user_action = InvoiceMe::Factory.new.authenticate_a_user_action
 
-  VCR.use_cassette("find_a_provider") do
-    @found_user = authenticate_a_user_action.run(@username, @password)
-  end
+  @found_user = authenticate_a_user_action.run(@username, @password)
 end
 
 Then(/^is authenticated$/) do
