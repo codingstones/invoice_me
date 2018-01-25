@@ -14,8 +14,8 @@ Instala las dependencias con bundler:
 
 Una vez tengas tu token de cuéntica, puedes lanzarlo simplemente con ruby:
 
-    $ AUTH_TOKEN=tu_token_de_cuentica ruby app.rb
+    $ AUTH_TOKEN=tu_token_de_cuentica ORIGIN_ACCOUNT=id_de_tu_cuenta ruby app.rb
 
 O con cualquier un servidor Rack:
 
-    $ AUTH_TOKEN=tu_token_de_cuentica bundle exec rackup -p 4567
+    $ AUTH_TOKEN=tu_token_de_cuentica ORIGIN_ACCOUNT=id_de_tu_cuenta bundle exec rackup -p 4567
