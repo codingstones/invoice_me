@@ -65,8 +65,9 @@ module InvoiceMe
     end
 
     def serialize_payment_information(invoice)
+      origin_account = ENV['ORIGIN_ACCOUNT'].to_i
       date = invoice.date.to_s
-      [{date: date, amount: invoice.total_amount, payment_method: 'wire_transfer', paid: false, origin_account: 37207}]
+      [{date: date, amount: invoice.total_amount, payment_method: 'wire_transfer', paid: false, origin_account: origin_account}]
     end
 
     def serialize_attachment(invoice)
