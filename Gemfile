@@ -11,4 +11,5 @@ group :development do
   gem 'cucumber'
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'simplecov', require: false
 end

@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 require 'invoice_me'
 require 'date'
 require 'vcr'
