@@ -1,4 +1,5 @@
 require 'cucumber/rake/task'
+require 'rspec/core/rake_task'
 
 namespace :features do
   Cucumber::Rake::Task.new(:core) do |t|
@@ -9,3 +10,7 @@ namespace :features do
     t.cucumber_opts  = "-r features/e2e/"
   end
 end
+
+RSpec::Core::RakeTask.new(:spec)
+
+task default: :spec
