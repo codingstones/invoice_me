@@ -74,6 +74,7 @@ GEM
       rack
     rack-test (0.8.2)
       rack (>= 1.0, < 3)
+    rake (12.0.0)
     rspec (3.6.0)
       rspec-core (~> 3.6.0)
       rspec-expectations (~> 3.6.0)
@@ -119,6 +120,7 @@ DEPENDENCIES
   cucumber
   dry-validation
   rack-test
+  rake
   rspec
   selenium-webdriver
   simplecov
