@@ -13,4 +13,4 @@ end
 
 RSpec::Core::RakeTask.new(:spec)
 
-task default: [:spec, 'features:core']
+task default: [:spec, 'features:core', 'features:e2e']
