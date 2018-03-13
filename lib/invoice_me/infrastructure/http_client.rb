@@ -18,7 +18,7 @@ module InvoiceMe
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
       request = Net::HTTP::Get.new(url)
-      request['X-AUTH-TOKEN'] = ENV['AUTH_TOKEN']
+      request['X-AUTH-TOKEN'] = @auth_token
 
       response = http.request(request)
       JSON::parse(response.read_body)
